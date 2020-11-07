@@ -21,7 +21,11 @@ public:
 	static void ChangeScene(Scene* nextScene);
 	static Scene* GetCurrentScene();
 
-public:
+	static void Destroy(GameObject* gameObject);
+	static void PushOnCurrentScene(GameObject* gameObject);
+	static void PushOnCurrentScene(AABBCollider* col);
+
+private:
 	std::list<GameObject*> renderableList;
 	std::list<GameObject*> gameObjectList;
 	std::list<GameObject*> destroyedObjectList;
@@ -36,8 +40,8 @@ private:
 	void Render();
 
 public:
-	GameObject* PushBackGameObject(GameObject* gameObject);
-	void Destroy(GameObject* o);
+	GameObject* Push(GameObject* gameObject);
+	//void Destroy(GameObject* o);
 
 public:
 	RenderingManager* GetRenderingManager();

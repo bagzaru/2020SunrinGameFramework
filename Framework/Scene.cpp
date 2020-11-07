@@ -46,9 +46,33 @@ Scene* Scene::GetCurrentScene()
 	return Scene::currentScene;
 }
 
+void Scene::PushOnCurrentScene(GameObject* gameObject)
+{
+	if (currentScene)
+		currentScene->Push(gameObject);
+	else
+		std::cout << "Scene::PushObject error: 현재 씬이 없습니다.\n";
+}
+
+void Scene::PushOnCurrentScene(AABBCollider* col)
+{
+	if (currentScene)
+	{
+		if (currentScene->collisionManager)
+			currentScene->collisionManager->PushBackCollider(col);		
+		else
+			std::cout << "Scene::PushObject: collisionManager가 없습니다.\n";		
+	}
+	else
+	{
+		std::cout << "Scene::PushObject: 현재 씬이 없습니다.\n";
+	}
+
+}
+
 void Scene::Initialize()
 {
-	GameObject* g = PushBackGameObject(new GameObject(L"a.png"));
+	GameObject* g = Push(new GameObject(L"a.png"));
 	g->transform->SetPosition(100.0f, 100.0f);
 }
 
@@ -96,7 +120,7 @@ void Scene::Render()
 	renderingManager->EndRender();
 }
 
-GameObject* Scene::PushBackGameObject(GameObject* gameObject)
+GameObject* Scene::Push(GameObject* gameObject)
 {
 	//게임 오브젝트에 집어넣음
 	gameObjectList.push_back(gameObject);
@@ -112,7 +136,14 @@ GameObject* Scene::PushBackGameObject(GameObject* gameObject)
 void Scene::Destroy(GameObject* o)
 {
 	//삭제될 오브젝트 리스트에 집어넣음
-	destroyedObjectList.push_back(o);
+	if (currentScene)
+	{
+		currentScene->destroyedObjectList.push_back(o);
+	}
+	else
+	{
+		std::cout << "Scene::Destroy 현재 씬이 없습니다.\n";
+	}
 }
 
 RenderingManager* Scene::GetRenderingManager()

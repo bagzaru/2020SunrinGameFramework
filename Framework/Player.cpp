@@ -10,7 +10,7 @@ Player::Player(const wchar_t* imagePath)
 {
 	moveSpeed = 500.0f;
 	bm = new BulletManager();
-	Scene::GetCurrentScene()->PushBackGameObject(bm);
+	Scene::GetCurrentScene()->Push(bm);
 }
 Player::~Player() {}
 void Player::Update() {
@@ -42,7 +42,7 @@ void Player::Shoot() {
 	//for (float i = 0.0f; i < 1.0f; i += 0.05f)
 	//{
 		Bullet* b = new Bullet(L"resources/b.png");
-		Scene::GetCurrentScene()->PushBackGameObject(b);
+		Scene::GetCurrentScene()->Push(b);
 		bm->PushBackBullet(b);
 
 		b->transform->position = this->transform->position;

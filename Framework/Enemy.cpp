@@ -16,7 +16,7 @@ Enemy::Enemy(const wchar_t* imagePath, float hp)
 		renderer->GetHeight()*(-0.5f),
 		renderer->GetHeight()*0.5f
 	);
-	Scene::GetCurrentScene()->GetCollisionManager()->PushBackCollider(col);
+	Scene::PushOnCurrentScene(col);
 	this->hp = hp;
 	tag = 2;
 }

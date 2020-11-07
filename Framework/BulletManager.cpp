@@ -43,7 +43,7 @@ void BulletManager::RemoveDestroyed()
 	for (auto& i : destroyed)
 	{
 		bulletList.remove(i);
-		Scene::GetCurrentScene()->Destroy(i);
+		Scene::Destroy(i);
 	}
 	destroyed.clear();
 }

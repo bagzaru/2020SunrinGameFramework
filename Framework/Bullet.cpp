@@ -13,7 +13,7 @@ Bullet::Bullet(const wchar_t* imagePath)
 		renderer->GetHeight() * (-0.5f),
 		renderer->GetHeight() * 0.5f
 	);
-	Scene::GetCurrentScene()->GetCollisionManager()->PushBackCollider(col);
+	Scene::PushOnCurrentScene(col);
 	speed = 0.0f;
 	speedRate = 0.0f;
 	angle = 0.0f;
@@ -46,7 +46,7 @@ void Bullet::OnDestroy() {
 void Bullet::OnCollision(GameObject* other)
 {
 	if(other->tag==2)
-		Scene::GetCurrentScene()->Destroy(this);
+		Scene::Destroy(this);
 }
 
 bool Bullet::CheckOutOfScreen()
