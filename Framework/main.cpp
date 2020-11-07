@@ -10,5 +10,7 @@ int main()
 	f->Run(new TestScene(),L"타이틀", 800,600, false);
 	SAFE_DELETE(f);
 
+	//Component, 충돌부분 수정 예정
+
 	return 0;
 }
