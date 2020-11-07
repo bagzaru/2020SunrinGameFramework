@@ -1,22 +1,25 @@
 #include "stdafx.h"
 #include "Bullet.h"
 #include "TimeManager.h"
+#include "Scene.h"
 #define PI 3.141592f
 Bullet::Bullet(const wchar_t* imagePath)
 	:GameObject(imagePath)
 {
 	col = new AABBCollider(
-		transform,
+		this,
 		renderer->GetWidth() * (-0.5f),
 		renderer->GetWidth() * 0.5f,
 		renderer->GetHeight() * (-0.5f),
 		renderer->GetHeight() * 0.5f
 	);
+	Scene::GetCurrentScene()->GetCollisionManager()->PushBackCollider(col);
 	speed = 0.0f;
 	speedRate = 0.0f;
 	angle = 0.0f;
 	angleRate = 0.0f;
 	damage = 0.0f;
+	tag = 1;
 }
 void Bullet::Move()
 {
@@ -37,6 +40,13 @@ Bullet::~Bullet() {
 
 
 void Bullet::OnDestroy() {
+	printf("으앙");
+}
+
+void Bullet::OnCollision(GameObject* other)
+{
+	if(other->tag==2)
+		Scene::GetCurrentScene()->Destroy(this);
 }
 
 bool Bullet::CheckOutOfScreen()
@@ -52,6 +62,7 @@ bool Bullet::CheckOutOfScreen()
 		transform->position.x>bw + sw ||			//총알이 오른 끝을 나갔거나
 		transform->position.y<bh * (-1.0f) ||		//총알이 위쪽 끝을 나갔거나
 		transform->position.y>bh + sh;				//총알이 아래 끝을 나갔거나
+
 }
 
 void Bullet::Update()

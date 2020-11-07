@@ -39,17 +39,17 @@ void Player::Move() {
 
 void Player::Shoot() {
 	//ÃÑ¾Ë ¹ß»ç
-	for (float i = 0.0f; i < 1.0f; i += 0.05f)
-	{
+	//for (float i = 0.0f; i < 1.0f; i += 0.05f)
+	//{
 		Bullet* b = new Bullet(L"resources/b.png");
 		Scene::GetCurrentScene()->PushBackGameObject(b);
 		bm->PushBackBullet(b);
 
 		b->transform->position = this->transform->position;
 		b->transform->SetScale(0.2f, 0.2f);
-		b->speed = 1000.0f;
+		b->speed = 100.0f;
 		b->angleRate = 0.05f;
-		b->angle = i;
-	}
+		b->angle = 0.75f;
+	//}
 }
 

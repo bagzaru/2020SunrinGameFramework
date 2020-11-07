@@ -19,6 +19,7 @@ Scene::~Scene()
 	gameObjectList.clear();
 	renderableList.clear();
 	SAFE_DELETE(renderingManager);
+	SAFE_DELETE(collisionManager);
 }
 
 void Scene::SwapScene(D2DApp* d2dApp)
@@ -31,6 +32,7 @@ void Scene::SwapScene(D2DApp* d2dApp)
 	nextScene = nullptr;
 
 	currentScene->renderingManager = new RenderingManager(d2dApp);
+	currentScene->collisionManager = new CollisionManager();
 	currentScene->Initialize();
 }
 
@@ -50,7 +52,7 @@ void Scene::Initialize()
 	g->transform->SetPosition(100.0f, 100.0f);
 }
 
-void Scene::Update()
+void Scene::UpdateGameObjects()
 {
 	//모든 오브젝트의 Update를 수행
 	for (auto& i : gameObjectList)
@@ -61,7 +63,15 @@ void Scene::Update()
 	for (auto& i : gameObjectList)
 		if (i->isActive)
 			i->LateUpdate();
+}
 
+void Scene::UpdatePhysics()
+{
+	collisionManager->Update();
+}
+
+void Scene::DeleteDestroyedObjects()
+{
 	//삭제 요청받은 오브젝트 삭제
 	auto i = destroyedObjectList.begin();
 	while (i != destroyedObjectList.end())
@@ -69,6 +79,7 @@ void Scene::Update()
 		(*i)->OnDestroy();
 		gameObjectList.remove(*i);		//게임오브젝트리스트에서 삭제
 		renderableList.remove(*i);		//렌더러블 리스트에서 삭제
+		collisionManager->RemoveGameObject(*i);
 		GameObject* t = *i;
 		SAFE_DELETE(t);				//delete
 		destroyedObjectList.remove(*i);
@@ -107,4 +118,9 @@ void Scene::Destroy(GameObject* o)
 RenderingManager* Scene::GetRenderingManager()
 {
 	return renderingManager;
+}
+
+CollisionManager* Scene::GetCollisionManager()
+{
+	return collisionManager;
 }

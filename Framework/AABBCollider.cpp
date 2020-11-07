@@ -2,14 +2,15 @@
 #include "AABBCollider.h"
 
 
-AABBCollider::AABBCollider(Transform* transform,
+AABBCollider::AABBCollider(GameObject* target,
 	float left, float right, float top, float bottom)
 {
-	this->transform = transform;
+	this->target = target;
 	this->left	= left;
 	this->right = right;
 	this->top	= top;
 	this->bottom = bottom;
+	this->transform = target->transform;
 }
 
 bool AABBCollider::Intersected(AABBCollider* other)

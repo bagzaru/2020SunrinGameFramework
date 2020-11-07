@@ -1,18 +1,19 @@
 #pragma once
-#include "Transform.h"
-class AABBCollider
+#include "Collider.h"
+
+class AABBCollider : public Collider
 {
+private:
+	Transform* transform;
 public:
 	float left;
 	float right;
 	float top;
 	float bottom;
-	Transform* transform;
 
 	bool Intersected(AABBCollider* col);
 
-	AABBCollider(Transform* transform,
-		float left, float right, float top, float bottom);
+	AABBCollider(GameObject* target, float left, float right, float top, float bottom);
 	~AABBCollider();
 };
 

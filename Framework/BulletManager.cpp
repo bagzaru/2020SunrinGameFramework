@@ -50,6 +50,6 @@ void BulletManager::RemoveDestroyed()
 
 void BulletManager::LateUpdate()
 {
-	CheckCollision();
+	//CheckCollision();
 	RemoveDestroyed();
 }

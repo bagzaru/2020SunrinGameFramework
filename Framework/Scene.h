@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "GameObject.h"
 #include "RenderingManager.h"
+#include "CollisionManager.h"
 
 class Scene
 {
@@ -25,10 +26,13 @@ public:
 	std::list<GameObject*> gameObjectList;
 	std::list<GameObject*> destroyedObjectList;
 	RenderingManager* renderingManager;
+	CollisionManager* collisionManager;
 
-public:
+private:
 	virtual void Initialize() = 0;
-	void Update();
+	void UpdateGameObjects();
+	void UpdatePhysics();
+	void DeleteDestroyedObjects();
 	void Render();
 
 public:
@@ -37,5 +41,6 @@ public:
 
 public:
 	RenderingManager* GetRenderingManager();
+	CollisionManager* GetCollisionManager();
 };
 

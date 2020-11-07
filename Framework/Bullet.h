@@ -16,6 +16,7 @@ public:
 	virtual void Update();
 	void Move();			//움직이는함수
 	virtual void OnDestroy();//삭제시 함수
+	virtual void OnCollision(GameObject* other);
 
 	bool CheckOutOfScreen();	//총알 화면 벗어났나 체크
 };

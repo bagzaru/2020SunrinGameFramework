@@ -51,7 +51,9 @@ void Framework::StartGameLoop()
 		TimeManager::UpdateTime();
 		InputManager::UpdateKeyState();
 		//Update World
-		Scene::currentScene->Update();
+		Scene::currentScene->UpdateGameObjects();
+		Scene::currentScene->UpdatePhysics();
+		Scene::currentScene->DeleteDestroyedObjects();
 		Scene::currentScene->Render();
 		//Change Scene
 		Scene::SwapScene(d2dApp);

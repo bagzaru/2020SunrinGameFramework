@@ -10,7 +10,7 @@ public:
 public:
 
 	virtual void Initialize() {};
-	virtual void Update() = 0;
+	virtual void Update() {};
 	virtual void Uninitialze() {};
 
 public:
