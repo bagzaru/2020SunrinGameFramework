@@ -6,15 +6,15 @@
 #include "Scene.h"
 
 Player::Player()
-	:GameObject(L"resources/Player.png"), 
+	:GameObject(L"resources/Player.png"),
 	moveSpeed(300.0f), timer(0.0f), delay(3.0f), angle(0.0f)
 {
 	tag = Tag::Player;
-	gun = new Gun(0.5f, 1000.0f, 3,0.1f * PI);
+	gun = new Gun(0.5f, 1000.0f, 3, 0.1f * PI);
 	col = new AABBCollider(this, renderer);
 	Scene::PushOnCurrentScene(col);
 }
-Player::~Player() 
+Player::~Player()
 {
 	SAFE_DELETE(gun);
 }
@@ -31,23 +31,38 @@ void Player::Update() {
 void Player::Move()
 {
 	//움직임을 담당
-	if (InputManager::GetKeyState('W'))
-		transform->position.y += moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState('S'))
-		transform->position.y -= moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState('D'))
-		transform->position.x += moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState('A'))
-		transform->position.x -= moveSpeed * TimeManager::GetDeltaTime();
+	Vector2 input(0.0f, 0.0f);
 
+	if (InputManager::GetKeyState('S'))
+	{
+		input.y -= 1.0f;
+	}
+	if (InputManager::GetKeyState('D'))
+	{
+		input.x += 1.0f;
+	}
+	if (InputManager::GetKeyState('W'))
+	{
+		input.y += 1.0f;
+	}
+	if (InputManager::GetKeyState('A'))
+	{
+		input.x -= 1.0f;
+	}
+	if (input.x!=0.0f||input.y!=0.0f)
+	{
+		input = input.normalized();
+		transform->position.x += moveSpeed * input.x * TimeManager::GetDeltaTime();
+		transform->position.y += moveSpeed * input.y * TimeManager::GetDeltaTime();
+	}
 }
 
-void Player::Shoot() 
+void Player::Shoot()
 {
 	gun->UpdateDelay();
 	angle = ComputeMouseAngle();
 	if (InputManager::GetKeyDown(VK_LBUTTON))
-	{		
+	{
 		gun->Shoot(transform->position, angle);
 	}
 	transform->rotatingAngle = angle;
@@ -73,10 +88,10 @@ float Player::ComputeMouseAngle()
 
 void Player::OnCollision(GameObject* other)
 {
-	if (timer>delay&&other->tag == Tag::Enemy)
+	if (timer > delay && other->tag == Tag::Enemy)
 	{
-		hp -= 1;
-		std::cout<<"체력이 1 달았습니다. 현재"<<hp<<"남음\n";
+		//hp -= 1;
+		std::cout << "체력이 1 달았습니다. 현재" << hp << "남음\n";
 		timer = 0;
 	}
 	if (hp == 0)

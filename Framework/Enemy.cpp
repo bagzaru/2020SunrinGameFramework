@@ -26,7 +26,7 @@ void Enemy::Update()
 
 void Enemy::Move()
 {
-	Vector2 aim = (playerTransform->position - transform->position).normalize();
+	Vector2 aim = (playerTransform->position - transform->position).normalized();
 	transform->SetRotation(atan2f(aim.y, aim.x));
 	transform->position.x += aim.x * moveSpeed * TimeManager::GetDeltaTime();
 	transform->position.y += aim.y * moveSpeed * TimeManager::GetDeltaTime();

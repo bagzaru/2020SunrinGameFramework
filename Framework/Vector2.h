@@ -38,7 +38,7 @@ struct Vector2 {
 	void SetVector(float x, float y);
 
 	float magnitude();
-	Vector2 normalize();
+	Vector2 normalized();
 };
 
 
