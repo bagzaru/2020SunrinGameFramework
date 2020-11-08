@@ -7,6 +7,7 @@ class RenderingManager
 {
 private:
 	D2DApp* d2dApp;
+	Vector2 screenSize;
 public:
 	RenderingManager(D2DApp* d2dApp);
 	~RenderingManager();
@@ -17,6 +18,7 @@ public:
 	//Scene->Render에서 사용
 	void BeginRender();
 	void Render(RenderInfo* renderInfo, Transform* transform);
+	void Render(RenderInfo* renderInfo, Transform* transform, Vector2 cameraPosition);
 	void EndRender();
 
 };

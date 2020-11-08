@@ -133,6 +133,7 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Framework\Manager\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -216,6 +217,7 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Framework\Manager\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

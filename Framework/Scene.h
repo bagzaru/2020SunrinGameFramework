@@ -1,6 +1,6 @@
 #pragma once
 #include "stdafx.h"
-#include "GameObject.h"
+#include "Camera.h"
 #include "RenderingManager.h"
 #include "CollisionManager.h"
 
@@ -26,6 +26,7 @@ public:
 	static void PushOnCurrentScene(AABBCollider* col);
 
 private:
+	Camera* camera;
 	std::list<GameObject*> renderableList;
 	std::list<GameObject*> gameObjectList;
 	std::list<GameObject*> destroyedObjectList;
@@ -46,5 +47,6 @@ public:
 public:
 	RenderingManager* GetRenderingManager();
 	CollisionManager* GetCollisionManager();
+	Camera* GetCamera();
 };
 

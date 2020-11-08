@@ -6,8 +6,9 @@
 Scene* Scene::currentScene = nullptr;
 Scene* Scene::nextScene = nullptr;
 
-Scene::Scene(): renderingManager(nullptr)
+Scene::Scene(): renderingManager(nullptr), camera(new Camera())
 {
+	Push(camera);
 }
 
 Scene::~Scene()
@@ -116,7 +117,8 @@ void Scene::Render()
 {
 	renderingManager->BeginRender();
 	for (auto& i : renderableList)
-		renderingManager->Render(i->renderer, i->transform);
+		renderingManager->Render(i->renderer, i->transform,camera->transform->position);
+		//renderingManager->Render(i->renderer, i->transform);
 	renderingManager->EndRender();
 }
 
@@ -154,4 +156,9 @@ RenderingManager* Scene::GetRenderingManager()
 CollisionManager* Scene::GetCollisionManager()
 {
 	return collisionManager;
+}
+
+Camera* Scene::GetCamera()
+{
+	return camera;
 }
