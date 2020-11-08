@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Enemy.h"
 #include "Scene.h"
+#include "TimeManager.h"
 
 Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp, Transform* playerTransform)
 	: GameObject(imagePath),hp(hp),moveSpeed(moveSpeed), playerTransform(playerTransform)
@@ -21,9 +22,16 @@ Enemy::~Enemy(){
 	SAFE_DELETE(col);
 }
 
+void Enemy::Update()
+{
+	Move();
+}
+
 void Enemy::Move()
 {
-	//p
+	Vector2 aim = (playerTransform->position - transform->position).normalize();
+	transform->position.x += aim.x * moveSpeed * TimeManager::GetDeltaTime();
+	transform->position.y += aim.y * moveSpeed * TimeManager::GetDeltaTime();
 }
 
 void Enemy::Hit(float damage)
