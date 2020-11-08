@@ -6,9 +6,8 @@
 Scene* Scene::currentScene = nullptr;
 Scene* Scene::nextScene = nullptr;
 
-Scene::Scene(): renderingManager(nullptr), camera(new Camera())
+Scene::Scene(): renderingManager(nullptr), camera(nullptr)
 {
-	Push(camera);
 }
 
 Scene::~Scene()
@@ -34,6 +33,8 @@ void Scene::SwapScene(D2DApp* d2dApp)
 
 	currentScene->renderingManager = new RenderingManager(d2dApp);
 	currentScene->collisionManager = new CollisionManager();
+	currentScene->camera = new Camera();
+	currentScene->Push(currentScene->camera);
 	currentScene->Initialize();
 }
 

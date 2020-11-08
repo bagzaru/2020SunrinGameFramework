@@ -20,7 +20,7 @@ public:
 	bool IsOnScreen(AABBCollider* col);
 
 public:
-	static Camera* GetCamera();//¹Ì¿Ï¼º
+	static Camera* GetCamera();
 	void Update();
 
 };
