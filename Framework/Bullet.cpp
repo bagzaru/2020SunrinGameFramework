@@ -9,8 +9,8 @@ Bullet::Bullet(const wchar_t* imagePath)
 	col = new AABBCollider(
 		this,
 		renderer->GetWidth() * (-0.5f),
-		renderer->GetWidth() * 0.5f,
 		renderer->GetHeight() * (-0.5f),
+		renderer->GetWidth() * 0.5f,
 		renderer->GetHeight() * 0.5f
 	);
 	Scene::PushOnCurrentScene(col);

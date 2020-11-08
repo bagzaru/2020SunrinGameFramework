@@ -138,9 +138,11 @@ void RenderingManager::Render(RenderInfo* renderInfo, Transform* transform, Vect
 	Point positioningCenter;
 	positioningCenter.x 
 		= transform->position.x - transform->positioningCenter.x - cameraPosition.x + screenSize.x*0.5f;
-	positioningCenter.y 
-		= transform->position.y - transform->positioningCenter.y - cameraPosition.y + screenSize.y*0.5f;
-
+	positioningCenter.y
+		= screenSize.y * 0.5f - transform->position.y + transform->positioningCenter.y + cameraPosition.y;
+	//y축이 아래를 향할경우
+	/*positioningCenter.y
+		= transform->position.y - transform->positioningCenter.y - cameraPosition.y + screenSize.y*0.5f;*/
 
 
 	D2D1_RECT_F rect;

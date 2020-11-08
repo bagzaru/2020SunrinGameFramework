@@ -3,7 +3,7 @@
 
 
 AABBCollider::AABBCollider(GameObject* target,
-	float left, float right, float top, float bottom)
+	float left, float bottom, float right, float top)
 {
 	this->target = target;
 	this->left	= left;
@@ -39,7 +39,7 @@ bool AABBCollider::Intersected(AABBCollider* other)
 	return
 		!(
 		(aRight < bLeft) || (bRight < aLeft) ||
-			(aBottom < bTop) || (bBottom < aTop)
+			(aBottom > bTop) || (bBottom > aTop)
 			);
 }
 

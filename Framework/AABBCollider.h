@@ -13,7 +13,7 @@ public:
 
 	bool Intersected(AABBCollider* col);
 
-	AABBCollider(GameObject* target, float left, float right, float top, float bottom);
+	AABBCollider(GameObject* target, float left, float bottom, float right, float top);
 	~AABBCollider();
 };
 
