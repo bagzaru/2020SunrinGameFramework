@@ -28,11 +28,11 @@ void Gun::Shoot(Vector2 playerPosition, float angle)
 		float startangle = angle - ((float)bulletCount - 1.0f) * 0.5f * bulletGap;
 		for (int i = 0; i < bulletCount; ++i)
 		{
-			Bullet* b = new Bullet(L"resources/b.png");
+			Bullet* b = new Bullet(L"resources/bullet.png");
 			b->transform->SetPosition(playerPosition);
-			b->transform->SetScale(0.2f, 0.2f);
 			b->speed = bulletSpeed;
 			b->angle = startangle+bulletGap*(float)i;
+			b->transform->SetRotation(b->angle + 0.5f * PI);
 			Scene::PushOnCurrentScene(b);
 		}
 	}

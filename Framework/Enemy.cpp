@@ -8,10 +8,7 @@ Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp, Transform* playe
 {
 	col = new AABBCollider(
 		this,
-		renderer->GetWidth()*(-0.5f),
-		renderer->GetHeight()*(-0.5f),
-		renderer->GetWidth() * 0.5f,
-		renderer->GetHeight()*0.5f
+		renderer
 	);
 	Scene::PushOnCurrentScene(col);
 
@@ -30,6 +27,7 @@ void Enemy::Update()
 void Enemy::Move()
 {
 	Vector2 aim = (playerTransform->position - transform->position).normalize();
+	transform->SetRotation(atan2f(aim.y, aim.x));
 	transform->position.x += aim.x * moveSpeed * TimeManager::GetDeltaTime();
 	transform->position.y += aim.y * moveSpeed * TimeManager::GetDeltaTime();
 }

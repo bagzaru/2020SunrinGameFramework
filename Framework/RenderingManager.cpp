@@ -3,7 +3,7 @@
 #include "Framework.h"
 
 
-RenderingManager::RenderingManager(D2DApp* d2dApp) :d2dApp(d2dApp)
+RenderingManager::RenderingManager(D2DApp* d2dApp) :d2dApp(d2dApp), radToEuler(-180.0f/PI)
 {
 }
 
@@ -102,7 +102,7 @@ void RenderingManager::Render(RenderInfo* renderInfo, Transform* transform)
 			transform->scale.y,
 			scalingCenter)
 		* D2D1::Matrix3x2F::Rotation(
-			transform->rotatingAngle,
+			transform->rotatingAngle * radToEuler,
 			rotatingCenter
 		));
 	renderTarget->DrawBitmap(currentSprite->bitmap, &rect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, sourceRect);
@@ -168,7 +168,7 @@ void RenderingManager::Render(RenderInfo* renderInfo, Transform* transform, Vect
 			transform->scale.y,
 			scalingCenter)
 		* D2D1::Matrix3x2F::Rotation(
-			transform->rotatingAngle,
+			transform->rotatingAngle * radToEuler,
 			rotatingCenter
 		));
 	renderTarget->DrawBitmap(currentSprite->bitmap, &rect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, sourceRect);

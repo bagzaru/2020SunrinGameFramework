@@ -6,13 +6,15 @@ class Player :
 	public GameObject
 {
 public:
-	Player(const wchar_t* imagePath);
+	Player();
 	~Player();
 
 	float moveSpeed;		//이동 속도
 	int hp = 3;
 	Gun* gun;
 	AABBCollider* col;
+
+	float angle;
 
 	virtual void Update();	//업데이트 처리
 	void Move();

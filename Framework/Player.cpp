@@ -5,8 +5,9 @@
 #include "Bullet.h"
 #include "Scene.h"
 
-Player::Player(const wchar_t* imagePath)
-	:GameObject(imagePath), moveSpeed(300.0f), timer(0.0f), delay(3.0f)
+Player::Player()
+	:GameObject(L"resources/Player.png"), 
+	moveSpeed(300.0f), timer(0.0f), delay(3.0f), angle(0.0f)
 {
 	tag = Tag::Player;
 	gun = new Gun(0.5f, 1000.0f, 3,0.1f * PI);
@@ -21,7 +22,7 @@ void Player::Update() {
 	//매 프레임 호출
 	Move();
 	Shoot();
-	SetCameraOnPlayer();
+	//SetCameraOnPlayer();
 	CollisionTimer();
 }
 
@@ -44,11 +45,12 @@ void Player::Move()
 void Player::Shoot() 
 {
 	gun->UpdateDelay();
+	angle = ComputeMouseAngle();
 	if (InputManager::GetKeyDown(VK_LBUTTON))
-	{
-		float a = ComputeMouseAngle();
-		gun->Shoot(transform->position, a);
+	{		
+		gun->Shoot(transform->position, angle);
 	}
+	transform->rotatingAngle = angle;
 }
 
 void Player::SetCameraOnPlayer()
