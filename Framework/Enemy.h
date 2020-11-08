@@ -5,13 +5,14 @@ class Enemy :
 	public GameObject
 {
 public:
-	float hp;
 	AABBCollider* col;
 
-	void OnCollision(GameObject* other);
+	int hp;
+	float moveSpeed;
 
-	Enemy(const wchar_t* imagePath, float hp);
+	Enemy(const wchar_t* imagePath, float moveSpeed, int hp);
 	void Hit(float damage);
 	~Enemy();
+	void OnCollision(GameObject* other);
 };
 
