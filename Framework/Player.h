@@ -11,6 +11,7 @@ public:
 
 	float moveSpeed;		//이동 속도
 	Gun* gun;
+	AABBCollider* col;
 
 	virtual void Update();	//업데이트 처리
 	void Move();

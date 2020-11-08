@@ -18,7 +18,7 @@ Enemy::Enemy(const wchar_t* imagePath, float hp)
 	);
 	Scene::PushOnCurrentScene(col);
 	this->hp = hp;
-	tag = 2;
+	tag = Tag::Enemy;
 }
 Enemy::~Enemy(){
 	SAFE_DELETE(col);

@@ -4,6 +4,8 @@
 class Collider
 {
 public:
+	Collider(GameObject* target);
+public:
 	GameObject* target;
 };
 

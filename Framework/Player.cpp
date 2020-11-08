@@ -8,6 +8,7 @@
 Player::Player(const wchar_t* imagePath)
 	:GameObject(imagePath), moveSpeed(300.0f)
 {
+	tag = Tag::Player;
 	gun = new Gun(0.5f, 1000.0f, 3,0.1f * PI);
 }
 Player::~Player() 

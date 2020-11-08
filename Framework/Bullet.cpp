@@ -19,7 +19,7 @@ Bullet::Bullet(const wchar_t* imagePath)
 	angle = 0.0f;
 	angleRate = 0.0f;
 	damage = 0.0f;
-	tag = 1;
+	tag = Tag::Bullet;
 }
 
 
@@ -45,7 +45,7 @@ void Bullet::OnDestroy() {
 
 void Bullet::OnCollision(GameObject* other)
 {
-	if(other->tag==2)
+	if(other->tag==Tag::Enemy)
 		Scene::Destroy(this);
 }
 
