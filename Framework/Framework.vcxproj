@@ -137,6 +137,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="D2DApp.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="ListAnimation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="RenderInfo.cpp" />
     <ClCompile Include="RenderingManager.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="D2DApp.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />
@@ -174,6 +177,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="ListAnimation.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="RenderInfo.h" />
     <ClInclude Include="RenderingManager.h" />
     <ClInclude Include="Scene.h" />

@@ -2,6 +2,7 @@
 #include "Framework.h"
 #include "InputManager.h"
 #include "TimeManager.h"
+#include "Random.h"
 
 Framework::Framework()
 {
@@ -17,6 +18,7 @@ Framework::~Framework()
 
 void Framework::Run(Scene* startScene, const wchar_t* title, int width, int height, bool isFullScreen)
 {
+	Random::GetInstance();
 	if (SUCCEEDED(CoInitialize(NULL)))
 	{
 		if (winApp->Initialize(title, width, height, isFullScreen))

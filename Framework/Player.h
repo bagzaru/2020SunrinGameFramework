@@ -8,20 +8,20 @@ class Player :
 public:
 	Player();
 	~Player();
-
-	float moveSpeed;		//이동 속도
-	int hp = 3;
-	Gun* gun;
-	AABBCollider* col;
-
-	float angle;
-
 	virtual void Update();	//업데이트 처리
+
+	//이동
+	float moveSpeed;		//이동 속도
 	void Move();
+
+	//총알 발사
+	Gun* gun;
 	void Shoot();
-	void SetCameraOnPlayer();
 	float ComputeMouseAngle();
 
+	//몬스터와 충돌
+	int hp = 3;
+	AABBCollider* col;
 	float timer;
 	float delay;
 	void OnCollision(GameObject* other);

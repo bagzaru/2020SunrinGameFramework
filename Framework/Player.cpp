@@ -7,7 +7,7 @@
 
 Player::Player()
 	:GameObject(L"resources/Player.png"),
-	moveSpeed(300.0f), timer(0.0f), delay(3.0f), angle(0.0f)
+	moveSpeed(300.0f), timer(0.0f), delay(3.0f)
 {
 	tag = Tag::Player;
 	gun = new Gun(0.5f, 1000.0f, 3, 0.1f * PI);
@@ -22,17 +22,13 @@ void Player::Update() {
 	//매 프레임 호출
 	Move();
 	Shoot();
-	//SetCameraOnPlayer();
 	CollisionTimer();
 }
-
-
 
 void Player::Move()
 {
 	//움직임을 담당
 	Vector2 input(0.0f, 0.0f);
-
 	if (InputManager::GetKeyState('S'))
 	{
 		input.y -= 1.0f;
@@ -60,17 +56,12 @@ void Player::Move()
 void Player::Shoot()
 {
 	gun->UpdateDelay();
-	angle = ComputeMouseAngle();
+	float angle = ComputeMouseAngle();
 	if (InputManager::GetKeyDown(VK_LBUTTON))
 	{
 		gun->Shoot(transform->position, angle);
 	}
 	transform->rotatingAngle = angle;
-}
-
-void Player::SetCameraOnPlayer()
-{
-	Camera::GetCamera()->transform->position = transform->position;
 }
 
 float Player::ComputeMouseAngle()
@@ -80,7 +71,6 @@ float Player::ComputeMouseAngle()
 		(float)InputManager::GetMouseY()
 	);
 	Vector2 mouseInWorld = Camera::ScreenPositionToWorld(mouse);
-	//printf("%.2f, %.2f\n", mouseInWorld.x, mouseInWorld.y);
 	return atan2f(
 		mouseInWorld.y - transform->position.y,
 		mouseInWorld.x - transform->position.x);
@@ -92,7 +82,7 @@ void Player::OnCollision(GameObject* other)
 	{
 		//hp -= 1;
 		std::cout << "체력이 1 달았습니다. 현재" << hp << "남음\n";
-		timer = 0;
+		timer = 0.0f;
 	}
 	if (hp == 0)
 	{

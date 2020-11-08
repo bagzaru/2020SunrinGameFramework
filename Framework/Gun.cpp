@@ -4,7 +4,7 @@
 #include "TimeManager.h"
 
 Gun::Gun(float delay,float bulletSpeed, int bulletCount, float bulletGap)
-	:  delay(delay), bulletSpeed(bulletSpeed), bulletCount(bulletCount), bulletGap(bulletGap), timer(0.0f), canShoot(true)
+	: delay(delay), bulletSpeed(bulletSpeed), bulletCount(bulletCount), bulletGap(bulletGap), timer(0.0f), canShoot(true)
 {
 }
 

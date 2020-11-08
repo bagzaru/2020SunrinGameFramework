@@ -16,4 +16,7 @@ void GameScene::Initialize()
 	enemy = new Enemy(L"resources/Enemy.png",100.0f,30,player->transform);
 	Push(enemy);
 	enemy->transform->SetPosition(0.0f, 300.0f);
+
+	spawner = new EnemySpawner(player->transform);
+	Push(spawner);
 }

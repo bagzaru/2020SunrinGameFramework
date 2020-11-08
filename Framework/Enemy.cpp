@@ -32,13 +32,6 @@ void Enemy::Move()
 	transform->position.y += aim.y * moveSpeed * TimeManager::GetDeltaTime();
 }
 
-void Enemy::Hit(float damage)
-{
-	//printf("¾Æ¾ß!\n");
-	//hp -= damage;
-}
-
-
 void Enemy::OnCollision(GameObject* other)
 {
 	if (other->tag == Tag::Bullet)
