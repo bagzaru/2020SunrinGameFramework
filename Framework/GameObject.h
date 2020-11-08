@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include "tag.h"
 #include "RenderInfo.h"
 
 class GameObject
@@ -12,7 +13,7 @@ public:
 
 public:
 	bool isActive;
-	int tag;
+	Tag::Tag tag;
 public:
 	std::string name;
 	Transform* transform;

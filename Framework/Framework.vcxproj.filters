@@ -227,6 +227,7 @@
     <ClInclude Include="Gun.h">
       <Filter>GameScene\Player</Filter>
     </ClInclude>
+    <ClInclude Include="tag.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

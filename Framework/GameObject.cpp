@@ -5,7 +5,7 @@
 GameObject::GameObject(Vector2 position, float angle, Vector2 scale)
 	: transform(new Transform(position, angle, scale)),
 	renderer(new RenderInfo()),
-	isActive(true), tag(0)
+	isActive(true), tag(Tag::basic)
 
 {
 }
@@ -14,14 +14,14 @@ GameObject::GameObject(Vector2 position, float angle, Vector2 scale)
 GameObject::GameObject(const wchar_t* imagePath, Vector2 position, float angle, Vector2 scale)
 	:transform(new Transform(position, angle, scale)),
 	renderer(new RenderInfo(Scene::GetCurrentScene()->GetRenderingManager()->LoadBitmapFromFile(imagePath, 0, 0))),
-	isActive(true), tag(0)
+	isActive(true), tag(Tag::basic)
 {
 }
 
 GameObject::GameObject(RenderInfo* renderInfo, Vector2 position, float angle, Vector2 scale)
 	:transform(new Transform(position, angle, scale)),
 	renderer(renderInfo),
-	isActive(true), tag(0)
+	isActive(true), tag(Tag::basic)
 {
 }
 
