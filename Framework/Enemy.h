@@ -9,10 +9,13 @@ public:
 
 	int hp;
 	float moveSpeed;
+	Transform* playerTransform;
 
-	Enemy(const wchar_t* imagePath, float moveSpeed, int hp);
+	Enemy(const wchar_t* imagePath, float moveSpeed, int hp, Transform* playerTransform);
 	void Hit(float damage);
 	~Enemy();
+	void Move();
 	void OnCollision(GameObject* other);
+	
 };
 

@@ -2,8 +2,8 @@
 #include "Enemy.h"
 #include "Scene.h"
 
-Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp)
-	: GameObject(imagePath),hp(hp),moveSpeed(moveSpeed)
+Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp, Transform* playerTransform)
+	: GameObject(imagePath),hp(hp),moveSpeed(moveSpeed), playerTransform(playerTransform)
 {
 	col = new AABBCollider(
 		this,
@@ -20,6 +20,12 @@ Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp)
 Enemy::~Enemy(){
 	SAFE_DELETE(col);
 }
+
+void Enemy::Move()
+{
+	//p
+}
+
 void Enemy::Hit(float damage)
 {
 	//printf("¾Æ¾ß!\n");

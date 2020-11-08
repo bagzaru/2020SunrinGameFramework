@@ -143,3 +143,14 @@ inline void Vector2::SetVector(float x, float y)
 	this->x = x;
 	this->y = y;
 }
+
+inline float Vector2::magnitude()
+{
+	return sqrt(x * x + y * y);
+}
+
+inline Vector2 Vector2::normalize()
+{
+	float len = magnitude();
+	return Vector2(x/len, y/len);
+}
