@@ -18,6 +18,6 @@ public:
 	virtual void OnDestroy();//»èÁ¦½Ã ÇÔ¼ö
 	virtual void OnCollision(GameObject* other);
 
-	bool CheckOutOfScreen();	//ÃÑ¾Ë È­¸é ¹þ¾î³µ³ª Ã¼Å©
+	void CheckOutOfScreen();	//ÃÑ¾Ë È­¸é ¹þ¾î³µ³ª Ã¼Å©
 };
 

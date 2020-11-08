@@ -20,5 +20,6 @@
 
 #define SAFE_RELEASE(p) { if(p){p->Release();} p=NULL; }
 #define SAFE_DELETE(p) {if(p!=nullptr){delete(p);} p=nullptr; }
+#define PI 3.141592653589793f
 
 typedef D2D1_POINT_2F Point;

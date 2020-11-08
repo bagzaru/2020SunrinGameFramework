@@ -5,7 +5,7 @@
 class GameObject
 {
 public:
-	GameObject(Vector2 position = Vector2(), float angle = 0.0f, Vector2 scale = Vector2());
+	GameObject(Vector2 position = Vector2(), float angle = 0.0f, Vector2 scale = Vector2(1.0f, 1.0f));
 	GameObject(const wchar_t* imagePath, Vector2 position = Vector2(), float angle = 0.0f, Vector2 scale = Vector2(1.0f, 1.0f));
 	GameObject(RenderInfo* renderInfo, Vector2 position = Vector2(), float angle = 0.0f, Vector2 scale = Vector2(1.0f, 1.0f));
 	virtual ~GameObject();

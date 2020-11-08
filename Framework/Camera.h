@@ -15,8 +15,8 @@ public:
 	Camera();
 	virtual ~Camera();
 
-	inline Vector2 WorldPositionToScreen(const Vector2& worldPosition);
-	inline Vector2 ScreenPositionToWorld(const Vector2& screenPosition);
+	static Vector2 WorldPositionToScreen(const Vector2& worldPosition);
+	static Vector2 ScreenPositionToWorld(const Vector2& screenPosition);
 	bool IsOnScreen(AABBCollider* col);
 
 public:

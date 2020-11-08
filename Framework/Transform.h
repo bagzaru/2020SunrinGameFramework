@@ -23,7 +23,9 @@ public:
 
 public:
 	void SetPosition(float x, float y);
+	void SetPosition(const Vector2& v);
 	void SetRotation(float angle);
 	void SetScale(float x, float y);
+	void SetScale(const Vector2& v);
 };
 

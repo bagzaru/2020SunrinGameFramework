@@ -22,6 +22,11 @@ void Transform::SetPosition(float x, float y)
 	position.y = y;
 }
 
+void Transform::SetPosition(const Vector2& v)
+{
+	position = v;
+}
+
 void Transform::SetRotation(float angle)
 {
 	rotatingAngle = angle;
@@ -31,4 +36,9 @@ void Transform::SetScale(float x, float y)
 {
 	scale.x = x;
 	scale.y = y;
+}
+
+void Transform::SetScale(const Vector2& v)
+{
+	scale = v;
 }

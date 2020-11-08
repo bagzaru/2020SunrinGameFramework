@@ -6,50 +6,62 @@
 #include "Scene.h"
 
 Player::Player(const wchar_t* imagePath)
-	:GameObject(imagePath)
+	:GameObject(imagePath), moveSpeed(300.0f)
 {
-	moveSpeed = 500.0f;
-	bm = new BulletManager();
-	Scene::GetCurrentScene()->Push(bm);
+	gun = new Gun(0.5f, 1000.0f, 3,0.1f * PI);
 }
-Player::~Player() {}
+Player::~Player() 
+{
+	SAFE_DELETE(gun);
+}
 void Player::Update() {
 	//매 프레임 호출
 	Move();
+	Shoot();
+	SetCameraOnPlayer();
 }
 
 
 
-void Player::Move() {
+void Player::Move()
+{
 	//움직임을 담당
-	if (InputManager::GetKeyState(VK_UP))
-		transform->position.y -= moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState(VK_DOWN))
+	if (InputManager::GetKeyState('W'))
 		transform->position.y += moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState(VK_RIGHT))
+	if (InputManager::GetKeyState('S'))
+		transform->position.y -= moveSpeed * TimeManager::GetDeltaTime();
+	if (InputManager::GetKeyState('D'))
 		transform->position.x += moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState(VK_LEFT))
+	if (InputManager::GetKeyState('A'))
 		transform->position.x -= moveSpeed * TimeManager::GetDeltaTime();
 
-	if (InputManager::GetKeyState(VK_SPACE))
+}
+
+void Player::Shoot() 
+{
+	gun->UpdateDelay();
+	if (InputManager::GetKeyDown(VK_LBUTTON))
 	{
-		Shoot();
+		float a = ComputeMouseAngle();
+		gun->Shoot(transform->position, a);
 	}
 }
 
-void Player::Shoot() {
-	//총알 발사
-	//for (float i = 0.0f; i < 1.0f; i += 0.05f)
-	//{
-		Bullet* b = new Bullet(L"resources/b.png");
-		Scene::GetCurrentScene()->Push(b);
-		bm->PushBackBullet(b);
+void Player::SetCameraOnPlayer()
+{
+	Camera::GetCamera()->transform->position = transform->position;
+}
 
-		b->transform->position = this->transform->position;
-		b->transform->SetScale(0.2f, 0.2f);
-		b->speed = 100.0f;
-		b->angleRate = 0.05f;
-		b->angle = 0.75f;
-	//}
+float Player::ComputeMouseAngle()
+{
+	Vector2 mouse(
+		(float)InputManager::GetMouseX(),
+		(float)InputManager::GetMouseY()
+	);
+	Vector2 mouseInWorld = Camera::ScreenPositionToWorld(mouse);
+	//printf("%.2f, %.2f\n", mouseInWorld.x, mouseInWorld.y);
+	return atan2f(
+		mouseInWorld.y - transform->position.y,
+		mouseInWorld.x - transform->position.x);
 }
 

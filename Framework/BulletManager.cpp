@@ -12,11 +12,11 @@ void BulletManager::CheckCollision()
 			enemy->Hit(20.0f);
 			Destroy(i);
 		}
-		if (i->CheckOutOfScreen())
+		/*if (i->CheckOutOfScreen())
 		{
 			printf("화면 밖으로 나가서 총알 삭제!, 남은 총알: %d\n",bulletList.size());
 			Destroy(i);
-		}
+		}*/
 	}
 }
 

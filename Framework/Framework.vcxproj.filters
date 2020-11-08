@@ -55,6 +55,9 @@
     <Filter Include="Framework\Manager\Collision">
       <UniqueIdentifier>{1603b277-b0ae-4f75-ae6a-93f3467d2de7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene\Player">
+      <UniqueIdentifier>{37e028af-bedd-449b-a3ab-1a3db18a58f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D2DApp.cpp">
@@ -96,9 +99,6 @@
     <ClCompile Include="ListAnimation.cpp">
       <Filter>Framework\Components\Rendering\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationObject.cpp">
       <Filter>TestScene</Filter>
     </ClCompile>
@@ -134,6 +134,12 @@
       <Filter>Framework\Manager\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Player.cpp">
+      <Filter>GameScene\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>GameScene\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -178,9 +184,6 @@
     <ClInclude Include="ListAnimation.h">
       <Filter>Framework\Components\Rendering\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationObject.h">
       <Filter>TestScene</Filter>
     </ClInclude>
@@ -218,6 +221,12 @@
       <Filter>Framework\Manager\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Player.h">
+      <Filter>GameScene\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>GameScene\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

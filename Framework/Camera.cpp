@@ -12,7 +12,8 @@ Camera::Camera()
 	halfWidth = (float)screenWidth * 0.5f;
 	halfHeight = (float)screenHeight * 0.5f;
 
-	screenBox = new AABBCollider(this, -halfWidth, halfWidth, -halfHeight, halfHeight);
+	screenBox = new AABBCollider(this, -halfWidth,  -halfHeight, halfWidth, halfHeight);
+	printf("w: %f, h: %f\n", halfWidth, halfHeight);
 }
 
 Camera::~Camera()
@@ -29,9 +30,10 @@ Vector2 Camera::WorldPositionToScreen(const Vector2& worldPos)
 	//piw - cp + ss/2 = pis
 
 	//y축이 위를 향할경우
+	Camera* current = Camera::GetCamera();
 	return Vector2(
-		halfWidth - worldPos.x + transform->position.x,
-		halfHeight - worldPos.y + transform->position.y
+		current->halfWidth - worldPos.x + current->transform->position.x,
+		current->halfHeight - worldPos.y + current->transform->position.y
 	);
 	//y축이 아래를 향할경우
 	//return Vector2(
@@ -44,9 +46,10 @@ Vector2 Camera::ScreenPositionToWorld(const Vector2& screenPos)
 	//월드투스크린이랑 반대로하면됨
 
 	//y축이 위를 향할경우
+	Camera* current = Camera::GetCamera();
 	return Vector2(
-		halfWidth - screenPos.x + transform->position.x,
-		halfHeight - screenPos.y + transform->position.y
+		screenPos.x - current->halfWidth + current->transform->position.x,
+		current->halfHeight - screenPos.y + current->transform->position.y
 	);
 
 	//y축이 아래를 향할경우
