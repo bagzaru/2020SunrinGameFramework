@@ -72,12 +72,12 @@ Camera* Camera::GetCamera()
 void Camera::Update()
 {
 	////움직임을 담당
-	if (InputManager::GetKeyState('W'))
+	/*if (InputManager::GetKeyState('W'))
 		transform->position.y += 100.0f * TimeManager::GetDeltaTime();
 	if (InputManager::GetKeyState('S'))
 		transform->position.y -= 100.0f * TimeManager::GetDeltaTime();
 	if (InputManager::GetKeyState('D'))
 		transform->position.x += 100.0f * TimeManager::GetDeltaTime();
 	if (InputManager::GetKeyState('A'))
-		transform->position.x -= 100.0f * TimeManager::GetDeltaTime();
+		transform->position.x -= 100.0f * TimeManager::GetDeltaTime();*/
 }

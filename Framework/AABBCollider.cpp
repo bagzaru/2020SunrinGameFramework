@@ -16,20 +16,20 @@ AABBCollider::AABBCollider(GameObject* target, Sprite* sprite)
 	:Collider(target)
 {
 	transform = target->transform;
-	left = (float)(-sprite->bitmap->GetPixelSize().width);
-	right = (float)sprite->bitmap->GetPixelSize().width;
-	top = (float)sprite->bitmap->GetPixelSize().height;
-	bottom = (float)(-sprite->bitmap->GetPixelSize().height);
+	left = (float)(sprite->bitmap->GetPixelSize().width)*(-1.0f) * 0.5f;
+	right = (float)sprite->bitmap->GetPixelSize().width * 0.5f;
+	top = (float)sprite->bitmap->GetPixelSize().height * 0.5f;
+	bottom = (float)(sprite->bitmap->GetPixelSize().height)*(-1.0f) * 0.5f;
 }
 
 AABBCollider::AABBCollider(GameObject* target, RenderInfo* renderer)
 	:Collider(target)
 {
 	transform = target->transform;
-	left = (float)(-renderer->GetWidth());
-	right = (float)renderer->GetWidth();
-	top = (float)renderer->GetHeight();
-	bottom = (float)(-renderer->GetHeight());
+	left = (float)(-renderer->GetWidth() * 0.5f);
+	right = (float)renderer->GetWidth() * 0.5f;
+	top = (float)renderer->GetHeight() * 0.5f;
+	bottom = (float)(-renderer->GetHeight() * 0.5f);
 }
 
 AABBCollider::AABBCollider(GameObject* target,

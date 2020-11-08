@@ -6,10 +6,12 @@
 #include "Scene.h"
 
 Player::Player(const wchar_t* imagePath)
-	:GameObject(imagePath), moveSpeed(300.0f)
+	:GameObject(imagePath), moveSpeed(300.0f), timer(0.0f), delay(3.0f)
 {
 	tag = Tag::Player;
 	gun = new Gun(0.5f, 1000.0f, 3,0.1f * PI);
+	col = new AABBCollider(this, renderer);
+	Scene::PushOnCurrentScene(col);
 }
 Player::~Player() 
 {
@@ -20,6 +22,7 @@ void Player::Update() {
 	Move();
 	Shoot();
 	SetCameraOnPlayer();
+	CollisionTimer();
 }
 
 
@@ -64,5 +67,28 @@ float Player::ComputeMouseAngle()
 	return atan2f(
 		mouseInWorld.y - transform->position.y,
 		mouseInWorld.x - transform->position.x);
+}
+
+void Player::OnCollision(GameObject* other)
+{
+	if (timer>delay&&other->tag == Tag::Enemy)
+	{
+		hp -= 1;
+		std::cout<<"체력이 1 달았습니다. 현재"<<hp<<"남음\n";
+		timer = 0;
+	}
+	if (hp == 0)
+	{
+		std::cout << "게임 오바";
+		Scene::Destroy(this);
+	}
+}
+
+void Player::CollisionTimer()
+{
+	if (timer <= delay)
+	{
+		timer += TimeManager::GetDeltaTime();
+	}
 }
 

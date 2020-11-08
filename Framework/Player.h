@@ -10,6 +10,7 @@ public:
 	~Player();
 
 	float moveSpeed;		//이동 속도
+	int hp = 3;
 	Gun* gun;
 	AABBCollider* col;
 
@@ -18,5 +19,10 @@ public:
 	void Shoot();
 	void SetCameraOnPlayer();
 	float ComputeMouseAngle();
+
+	float timer;
+	float delay;
+	void OnCollision(GameObject* other);
+	void CollisionTimer();
 };
 

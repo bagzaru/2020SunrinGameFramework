@@ -2,7 +2,6 @@
 #include "Bullet.h"
 #include "TimeManager.h"
 #include "Scene.h"
-#define PI 3.141592f
 Bullet::Bullet(const wchar_t* imagePath)
 	:GameObject(imagePath)
 {
