@@ -19,8 +19,6 @@ public:
 
 	//Scene->Render에서 사용
 	void BeginRender();
-	void Render(RenderInfo* renderInfo, Transform* transform);
-	void Render(RenderInfo* renderInfo, Transform* transform, Vector2 cameraPosition);
 	void EndRender();	
 };
 
