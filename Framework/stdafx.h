@@ -1,4 +1,4 @@
-
+#pragma once
 #include <Windows.h>
 #include <iostream>
 #include <string>
@@ -34,6 +34,13 @@
 #pragma comment (lib, "mfreadwrite.lib")
 #pragma comment (lib, "mfplat.lib")
 #pragma comment (lib, "mfuuid")
+
+
+#ifndef _DEBUG
+#    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+#else
+#    pragma comment(linker, "/SUBSYSTEM:CONSOLE /ENTRY:mainCRTStartup")
+#endif
 
 
 #define SAFE_RELEASE(p) { if(p){p->Release();} p=NULL; }
