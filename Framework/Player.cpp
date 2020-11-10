@@ -13,6 +13,8 @@ Player::Player()
 	gun = new Gun(0.5f, 1000.0f, 3, 0.1f * PI);
 	col = new AABBCollider(this, renderer);
 	Scene::PushOnCurrentScene(col);
+	se = new SoundEvent();
+	se->LoadFile(L"resources/test.wav");
 }
 Player::~Player()
 {
@@ -59,7 +61,12 @@ void Player::Shoot()
 	float angle = ComputeMouseAngle();
 	if (InputManager::GetKeyDown(VK_LBUTTON))
 	{
+		se->Play();
 		gun->Shoot(transform->position, angle);
+	}
+	if (InputManager::GetKeyUp(VK_LBUTTON))
+	{
+		se->Stop();
 	}
 	transform->rotatingAngle = angle;
 }

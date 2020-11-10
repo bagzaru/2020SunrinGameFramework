@@ -13,10 +13,23 @@
 //COM
 #include <wincodec.h>
 
+//SOUND
+#include <xaudio2.h>
+#include <mfapi.h>		//wmf
+#include <mfidl.h>
+#include <mfreadwrite.h>
+
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "WindowsCodecs.lib")
 //stdafx.h
 #pragma comment(lib, "Winmm.lib")//ÀÌ°Å
+
+
+//SOUND
+#pragma comment (lib, "Xaudio2.lib")
+#pragma comment (lib, "mfreadwrite.lib")
+#pragma comment (lib, "mfplat.lib")
+#pragma comment (lib, "mfuuid")
 
 
 #define SAFE_RELEASE(p) { if(p){p->Release();} p=NULL; }

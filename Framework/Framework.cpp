@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "TimeManager.h"
 #include "Random.h"
+#include "Audio.h"
 
 Framework::Framework()
 {
@@ -25,12 +26,15 @@ void Framework::Run(Scene* startScene, const wchar_t* title, int width, int heig
 		{
 			if (d2dApp->Initialize())
 			{
+				bool audioInitialized = Audio::GetInstance()->Initialize();
 				InputManager::winApp = winApp;
 				Scene::ChangeScene(startScene);
 				Scene::SwapScene(d2dApp);
 				StartGameLoop();
 				SAFE_DELETE(Scene::currentScene);
 				SAFE_DELETE(Scene::nextScene);
+				if (audioInitialized)
+					Audio::GetInstance()->Uninitialize();
 				d2dApp->Uninitialize();
 			}
 		}

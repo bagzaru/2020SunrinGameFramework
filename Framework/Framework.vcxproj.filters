@@ -16,9 +16,6 @@
     <Filter Include="Framework\Components">
       <UniqueIdentifier>{3d32a544-6aad-4c31-a9fe-265993684270}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Presentation">
-      <UniqueIdentifier>{d24f3e45-29b4-413e-8aeb-7a8b7de39dbb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameScene">
       <UniqueIdentifier>{9bffd8c3-666c-4a93-a5b7-cc56feae779e}</UniqueIdentifier>
     </Filter>
@@ -61,13 +58,22 @@
     <Filter Include="GameScene\Enemy">
       <UniqueIdentifier>{4d90abbc-2af3-4e90-b52b-ead1104bb32b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Components\Rendering\Font">
+      <UniqueIdentifier>{b3cc462c-9395-4b72-b75d-b3bc7b4dcef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Components\SoundEvent">
+      <UniqueIdentifier>{7c82c8e8-0232-4e29-8d48-1bdcc6c7d50f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Engine">
+      <UniqueIdentifier>{d24f3e45-29b4-413e-8aeb-7a8b7de39dbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D2DApp.cpp">
-      <Filter>Framework\Presentation</Filter>
+      <Filter>Framework\Engine</Filter>
     </ClCompile>
     <ClCompile Include="WinApp.cpp">
-      <Filter>Framework\Presentation</Filter>
+      <Filter>Framework\Engine</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Framework\GameClass</Filter>
@@ -148,14 +154,22 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Framework\GameClass</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="SoundEvent.cpp">
+      <Filter>Framework\Components\SoundEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Framework\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Framework\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
-      <Filter>Framework\Presentation</Filter>
+      <Filter>Framework\Engine</Filter>
     </ClInclude>
     <ClInclude Include="D2DApp.h">
-      <Filter>Framework\Presentation</Filter>
+      <Filter>Framework\Engine</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Framework\GameClass</Filter>
@@ -242,7 +256,15 @@
     <ClInclude Include="Camera.h">
       <Filter>Framework\GameClass</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h" />
+    <ClInclude Include="SoundEvent.h">
+      <Filter>Framework\Components\SoundEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Framework\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Framework\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

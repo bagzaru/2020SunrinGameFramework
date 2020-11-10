@@ -129,6 +129,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationInfo.cpp" />
     <ClCompile Include="AnimationObject.cpp" />
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="RenderingManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SheetAnimation.cpp" />
+    <ClCompile Include="SoundEvent.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -161,6 +163,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationInfo.h" />
     <ClInclude Include="AnimationObject.h" />
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Camera.h" />
@@ -182,6 +185,7 @@
     <ClInclude Include="RenderingManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SheetAnimation.h" />
+    <ClInclude Include="SoundEvent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="tag.h" />
     <ClInclude Include="TestScene.h" />

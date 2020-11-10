@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "BulletManager.h"		//여기 추가
 #include "Gun.h"
+#include "SoundEvent.h"
 class Player :
 	public GameObject
 {
@@ -9,6 +10,9 @@ public:
 	Player();
 	~Player();
 	virtual void Update();	//업데이트 처리
+
+	//Sound
+	SoundEvent* se;
 
 	//이동
 	float moveSpeed;		//이동 속도
