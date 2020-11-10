@@ -8,7 +8,6 @@ class RenderingManager
 private:
 	D2DApp* d2dApp;
 	Vector2 screenSize;
-	float radToEuler;
 public:
 	RenderingManager(D2DApp* d2dApp);
 	~RenderingManager();
@@ -20,7 +19,6 @@ public:
 	void BeginRender();
 	void Render(RenderInfo* renderInfo, Transform* transform);
 	void Render(RenderInfo* renderInfo, Transform* transform, Vector2 cameraPosition);
-	void EndRender();
-	
+	void EndRender();	
 };
 

@@ -31,6 +31,7 @@ void Scene::SwapScene(D2DApp* d2dApp)
 	currentScene = nextScene;
 	nextScene = nullptr;
 
+	currentScene->d2dApp = d2dApp;
 	currentScene->renderingManager = new RenderingManager(d2dApp);
 	currentScene->collisionManager = new CollisionManager();
 	currentScene->camera = new Camera();
@@ -117,8 +118,12 @@ void Scene::DeleteDestroyedObjects()
 void Scene::Render()
 {
 	renderingManager->BeginRender();
+	Vector2 screenSize;
+	screenSize.x = (float)WinApp::GetScreenWidth();
+	screenSize.y = (float)WinApp::GetScreenHeight();
 	for (auto& i : renderableList)
-		renderingManager->Render(i->renderer, i->transform,camera->transform->position);
+		i->renderer->Render(Scene::d2dApp, screenSize, i->transform,camera->transform->position);
+		//renderingManager->Render(i->renderer, i->transform,camera->transform->position);
 		//renderingManager->Render(i->renderer, i->transform);
 	renderingManager->EndRender();
 }

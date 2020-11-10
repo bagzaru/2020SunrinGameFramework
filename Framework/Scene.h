@@ -12,7 +12,6 @@ public:
 	virtual ~Scene();
 
 private:
-	static D2DApp* d2dApp;
 	static Scene* currentScene;
 	static Scene* nextScene;
 	static void SwapScene(D2DApp* d2dApp);
@@ -26,6 +25,7 @@ public:
 	static void PushOnCurrentScene(AABBCollider* col);
 
 private:
+	D2DApp* d2dApp;
 	Camera* camera;
 	std::list<GameObject*> renderableList;
 	std::list<GameObject*> gameObjectList;

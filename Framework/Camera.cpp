@@ -13,7 +13,7 @@ Camera::Camera()
 	halfHeight = (float)screenHeight * 0.5f;
 
 	screenBox = new AABBCollider(this, -halfWidth,  -halfHeight, halfWidth, halfHeight);
-	printf("w: %f, h: %f\n", halfWidth, halfHeight);
+	//printf("w: %f, h: %f\n", halfWidth, halfHeight);
 }
 
 Camera::~Camera()

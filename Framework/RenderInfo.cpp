@@ -59,3 +59,83 @@ D2D1_RECT_F* RenderInfo::GetSourceRect()
 {
 	return nullptr;
 }
+
+void RenderInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition)
+{
+	if (!d2dApp)
+	{
+		printf("RenderInfo::Render: d2dApp이 없습니다.\n");
+		return;
+	}
+
+	ID2D1HwndRenderTarget* renderTarget = d2dApp->GetRenderTarget();
+	if (!renderTarget)
+	{
+		printf("RenderingManger::Render 실패, 렌더타겟이 없습니다.\n");
+		return;
+	}
+	BasicRender(renderTarget, screenSize, transform, cameraPosition, nullptr);
+}
+
+void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize, Transform* transform, Vector2 cameraPosition, D2D1_RECT_F* sourceRect)
+{
+	if (!renderTarget)
+	{
+		printf("RenderingManger::Render 실패, 렌더타겟이 없습니다.\n");
+		return;
+	}
+	if (!transform)
+	{
+		printf("RenderInfo::Render: transform이 주어지지 않았습니다.\n");
+		return;
+	}
+
+	if (!currentSprite || !currentSprite->bitmap)
+	{
+		printf("RenderingManger::Render 실패, 스프라이트가 없습니다.\n");
+		return;
+	}
+	//D2D1_SIZE_U size;
+	//size = currentSprite->bitmap->GetPixelSize();
+	Vector2 size;
+	size.x = (float)GetWidth();
+	size.y = (float)GetHeight();
+
+	Point positioningCenter;
+	positioningCenter.x
+		= transform->position.x - transform->positioningCenter.x - cameraPosition.x + screenSize.x * 0.5f;
+	positioningCenter.y
+		= screenSize.y * 0.5f - transform->position.y + transform->positioningCenter.y + cameraPosition.y;
+	//y축이 아래를 향할경우
+	/*positioningCenter.y
+		= transform->position.y - transform->positioningCenter.y - cameraPosition.y + screenSize.y*0.5f;*/
+
+	D2D1_RECT_F rect;
+	rect.left = positioningCenter.x - size.x * 0.5f;//* o->scale.x;
+	rect.top = positioningCenter.y - size.y * 0.5f;// *o->scale.y;
+	rect.right = positioningCenter.x + size.x * 0.5f;// *o->scale.x;
+	rect.bottom = positioningCenter.y + size.y * 0.5f;// *o->scale.y;
+
+	std::cout << rect.left << "," << rect.right << "," << rect.top << "," << rect.bottom << "\n";
+
+	Point scalingCenter;
+	scalingCenter.x = positioningCenter.x + transform->scalingCenter.x;
+	scalingCenter.y = positioningCenter.y + transform->scalingCenter.y;
+
+	Point rotatingCenter;
+	rotatingCenter.x = positioningCenter.x + transform->rotatingCenter.x;
+	rotatingCenter.y = positioningCenter.y + transform->rotatingCenter.y;
+
+	renderTarget->SetTransform(
+		D2D1::Matrix3x2F::Scale(
+			transform->scale.x,
+			transform->scale.y,
+			scalingCenter)
+		* D2D1::Matrix3x2F::Rotation(
+			transform->rotatingAngle * RADTOEULER,
+			rotatingCenter
+		));
+	renderTarget->DrawBitmap(currentSprite->bitmap, &rect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, sourceRect);
+
+
+}

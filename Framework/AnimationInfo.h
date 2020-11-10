@@ -17,7 +17,7 @@ public:
 	Animation* currentAnimation;		//현재 출력중인 애니메이션 객체의 포인터 주소
 	std::vector<Animation*> animations;	//모든 애니메이션이 들어있는 벡터(배열 형태의 컨테이너)
 public:
-	void Render(ID2D1HwndRenderTarget& renderTarget, Transform& transform);
+	virtual void Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition);
 	virtual void UpdateRenderInfo();
 public:
 	void ChangeAnimation(int state);			//애니메이션을 변경하고 싶을 경우 호출

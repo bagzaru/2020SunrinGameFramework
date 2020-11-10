@@ -15,57 +15,21 @@ AnimationInfo::~AnimationInfo()
 	animations.clear();
 }
 
-void AnimationInfo::Render(ID2D1HwndRenderTarget& renderTarget, Transform& transform)
+void AnimationInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition)
 {
-	printf("애니메이션인포 렌더 발생, 오류");
-	if (!currentAnimation)
-		return;
-	currentSprite = currentAnimation->UpdateAnim();
-	if (!currentSprite || !currentSprite->bitmap)
+	if (!d2dApp)
 	{
+		printf("RenderInfo::Render: d2dApp이 없습니다.\n");
 		return;
 	}
-
-	Vector2 size;
-	//size = currentAnimation->GetAnimationSize();
-
-	Point positioningCenter;
-	positioningCenter.x = transform.position.x - transform.positioningCenter.x;
-	positioningCenter.y = transform.position.y - transform.positioningCenter.y;
-
-	D2D1_RECT_F rect;
-	rect.left = positioningCenter.x - size.x * 0.5f;
-	rect.top = positioningCenter.y - size.y * 0.5f;
-	rect.right = positioningCenter.x + size.x * 0.5f;
-	rect.bottom = positioningCenter.y + size.y * 0.5f;
-
-
-	D2D1_RECT_F sourceRect;
-	sourceRect.left = 0.0f;
-	sourceRect.right = size.x;
-	sourceRect.top = 0.0f;
-	sourceRect.bottom = size.y;
-	//currentAnimation->SetSourceRect(sourceRect);
-	//printf("%.2f, %.2f, %.2f, %.2f\n", sourceRect.left, sourceRect.right, sourceRect.top, sourceRect.bottom);
-
-	Point scalingCenter;
-	scalingCenter.x = positioningCenter.x + transform.scalingCenter.x;
-	scalingCenter.y = positioningCenter.y + transform.scalingCenter.y;
-
-	Point rotatingCenter;
-	rotatingCenter.x = positioningCenter.x + transform.rotatingCenter.x;
-	rotatingCenter.y = positioningCenter.y + transform.rotatingCenter.y;
-
-	renderTarget.SetTransform(
-		D2D1::Matrix3x2F::Scale(
-			transform.scale.x,
-			transform.scale.y,
-			scalingCenter)
-		* D2D1::Matrix3x2F::Rotation(
-			transform.rotatingAngle,
-			rotatingCenter
-		));
-	renderTarget.DrawBitmap(currentSprite->bitmap, &rect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &sourceRect);
+	ID2D1HwndRenderTarget* renderTarget = d2dApp->GetRenderTarget();
+	if (!renderTarget)
+	{
+		printf("RenderingManger::Render 실패, 렌더타겟이 없습니다.\n");
+		return;
+	}
+	UpdateRenderInfo();
+	BasicRender(renderTarget, screenSize, transform, cameraPosition, GetSourceRect());
 }
 
 void AnimationInfo::UpdateRenderInfo()
