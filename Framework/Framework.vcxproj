@@ -139,6 +139,9 @@
     <ClCompile Include="D2DApp.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="FontInfo.cpp" />
+    <ClCompile Include="FontObject.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -173,6 +176,9 @@
     <ClInclude Include="D2DApp.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemySpawner.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="FontInfo.h" />
+    <ClInclude Include="FontObject.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />

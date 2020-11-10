@@ -71,7 +71,7 @@ void RenderInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform
 	ID2D1HwndRenderTarget* renderTarget = d2dApp->GetRenderTarget();
 	if (!renderTarget)
 	{
-		printf("RenderingManger::Render 실패, 렌더타겟이 없습니다.\n");
+		printf("RenderInfo::Render 실패, 렌더타겟이 없습니다.\n");
 		return;
 	}
 	BasicRender(renderTarget, screenSize, transform, cameraPosition, nullptr);
@@ -81,7 +81,7 @@ void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize
 {
 	if (!renderTarget)
 	{
-		printf("RenderingManger::Render 실패, 렌더타겟이 없습니다.\n");
+		printf("RenderInfo::Render 실패, 렌더타겟이 없습니다.\n");
 		return;
 	}
 	if (!transform)
@@ -92,7 +92,7 @@ void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize
 
 	if (!currentSprite || !currentSprite->bitmap)
 	{
-		printf("RenderingManger::Render 실패, 스프라이트가 없습니다.\n");
+		printf("RenderInfo::Render 실패, 스프라이트가 없습니다.\n");
 		return;
 	}
 	//D2D1_SIZE_U size;
@@ -115,8 +115,6 @@ void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize
 	rect.top = positioningCenter.y - size.y * 0.5f;// *o->scale.y;
 	rect.right = positioningCenter.x + size.x * 0.5f;// *o->scale.x;
 	rect.bottom = positioningCenter.y + size.y * 0.5f;// *o->scale.y;
-
-	std::cout << rect.left << "," << rect.right << "," << rect.top << "," << rect.bottom << "\n";
 
 	Point scalingCenter;
 	scalingCenter.x = positioningCenter.x + transform->scalingCenter.x;

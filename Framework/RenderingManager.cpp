@@ -41,6 +41,40 @@ Sprite* RenderingManager::LoadBitmapFromFile(PCWSTR uri, UINT destinationWidth, 
 	}
 }
 
+IDWriteTextFormat* RenderingManager::CreateTextFormat(const WCHAR* fontFamilyName, IDWriteFontCollection* fontCollection, DWRITE_FONT_WEIGHT fontWeight, DWRITE_FONT_STYLE fontStyle, DWRITE_FONT_STRETCH fontStretch, FLOAT fontSize, const WCHAR* localeName)
+{
+	IDWriteTextFormat* temp = nullptr;
+	HRESULT hr = d2dApp->GetDwriteFactory()->CreateTextFormat(
+		fontFamilyName,
+		NULL,
+		fontWeight,
+		fontStyle,
+		fontStretch,
+		fontSize,
+		L"",
+		&temp
+	);
+
+	if (SUCCEEDED(hr))
+		return temp;
+	else
+		return nullptr;
+}
+
+ID2D1SolidColorBrush* RenderingManager::CreateSolidColorBrush(const D2D1_COLOR_F& color)
+{
+	ID2D1SolidColorBrush* temp;
+	HRESULT hr = d2dApp->GetRenderTarget()->CreateSolidColorBrush(
+		color,
+		&temp
+	);
+
+	if (SUCCEEDED(hr))
+		return temp;
+	else
+		return nullptr;
+}
+
 void RenderingManager::BeginRender()
 {
 	screenSize.x = (float)WinApp::GetScreenWidth();

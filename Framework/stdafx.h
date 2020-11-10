@@ -13,6 +13,9 @@
 //COM
 #include <wincodec.h>
 
+//FONT
+#include <dwrite.h>
+
 //SOUND
 #include <xaudio2.h>
 #include <mfapi.h>		//wmf
@@ -21,9 +24,10 @@
 
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "WindowsCodecs.lib")
-//stdafx.h
 #pragma comment(lib, "Winmm.lib")//ÀÌ°Å
 
+//Font
+#pragma comment(lib, "Dwrite.lib")
 
 //SOUND
 #pragma comment (lib, "Xaudio2.lib")
