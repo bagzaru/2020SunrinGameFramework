@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "CircleCollider.h"
+#include "InputManager.h"
+#include "Camera.h"
 
 CircleCollider::CircleCollider(GameObject* gameObject, const Circle& circle)
 	:Collider(gameObject), boundingCircle(circle)
@@ -19,4 +21,10 @@ CircleCollider::CircleCollider(GameObject* gameObject, float x, float y, float r
 Collider::Circle CircleCollider::GetTransformedCircle()
 {
 	return Circle(boundingCircle.center + transform->position, boundingCircle.radius);
+}
+
+bool CircleCollider::isMouseOn()
+{
+	Vector2 v((float)InputManager::GetMouseX(), (float)InputManager::GetMouseY());
+	return boundingCircle.radius > (Camera::ScreenPositionToWorld(v) - GetTransformedCircle().center).magnitude();
 }

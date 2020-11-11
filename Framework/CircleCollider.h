@@ -12,5 +12,6 @@ public:
 
 public:
 	Circle GetTransformedCircle();
+	bool isMouseOn();
 };
 

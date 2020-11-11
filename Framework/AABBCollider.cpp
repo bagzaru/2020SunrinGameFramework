@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "AABBCollider.h"
+#include "InputManager.h"
+#include "Camera.h"
 
 
 AABBCollider::AABBCollider(GameObject* target, float width, float height)
@@ -75,4 +77,11 @@ float AABBCollider::GetHeight()
 float AABBCollider::GetSquareDiagonal()
 {
 	return (GetWidth() * GetWidth()) + (GetHeight() * GetHeight());
+}
+
+bool AABBCollider::isMouseOn()
+{
+	Vector2 v = Camera::ScreenPositionToWorld(Vector2((float)InputManager::GetMouseX(), (float)InputManager::GetMouseY()));
+	AABBBox b = GetTransformedBox();
+	return v.x<b.rightBottom.x&&v.x>b.leftTop.x&&v.y<b.leftTop.y&&v.y>b.rightBottom.y;
 }

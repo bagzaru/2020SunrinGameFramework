@@ -34,6 +34,17 @@ AnimationObject::AnimationObject(AnimationInfo* animInfo)
 	animationRenderer->PushBackAnimation(testAnim2);//AnimationInfo에 애니메이션을 푸쉬백합니다.
 
 	moveSpeed = 100.0f;	//이동 테스트
+
+	aabb = new AABBCollider(this, renderer);
+	cc = new CircleCollider(this, (float)renderer->GetWidth());
+	//Scene::PushOnCurrentScene(aabb);
+	Scene::PushOnCurrentScene(cc);
+}
+
+AnimationObject::~AnimationObject()
+{
+	SAFE_DELETE(aabb);
+	SAFE_DELETE(cc);
 }
 
 void AnimationObject::Update()
@@ -74,5 +85,10 @@ void AnimationObject::Update()
 			cur = 0;
 			animationRenderer->ChangeAnimation(0);
 		}
+	}
+
+	if (InputManager::GetKeyDown(VK_LBUTTON) && cc->isMouseOn())
+	{
+		Scene::ChangeScene(new GameScene());
 	}
 }

@@ -20,5 +20,7 @@ public:
 	float GetWidth();
 	float GetHeight();
 	float GetSquareDiagonal();
+
+	bool isMouseOn();
 };
 

@@ -3,18 +3,24 @@
 #include "AnimationInfo.h"
 #include "ListAnimation.h"
 #include "SheetAnimation.h"
+#include "AABBCollider.h"
+#include "CircleCollider.h"
 
 class AnimationObject :
 	public GameObject
 {
 public:
 	AnimationObject(AnimationInfo* animinfo);
+	~AnimationObject();
 
 public:
 	AnimationInfo* animationRenderer;
 
 	ListAnimation* testAnim1;
 	SheetAnimation* testAnim2;
+
+	AABBCollider* aabb;
+	CircleCollider* cc;
 
 	float moveSpeed;
 public:
