@@ -102,9 +102,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="BulletManager.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="ListAnimation.cpp">
       <Filter>Framework\Components\Rendering\Animation</Filter>
     </ClCompile>
@@ -208,9 +205,6 @@
       <Filter>Framework\Components\Rendering\Animation</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletManager.h">
       <Filter>GameScene</Filter>
     </ClInclude>
     <ClInclude Include="ListAnimation.h">
