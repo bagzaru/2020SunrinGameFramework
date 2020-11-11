@@ -15,5 +15,7 @@ public:
 public:
 	void Update();
 
+public:
+	static bool Intersected(AABBCollider* a, AABBCollider* b);
 };
 

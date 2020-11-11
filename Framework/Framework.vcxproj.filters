@@ -175,6 +175,7 @@
     <ClCompile Include="FontObject.cpp">
       <Filter>TestScene</Filter>
     </ClCompile>
+    <ClCompile Include="CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -286,6 +287,7 @@
     <ClInclude Include="FontObject.h">
       <Filter>TestScene</Filter>
     </ClInclude>
+    <ClInclude Include="CircleCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

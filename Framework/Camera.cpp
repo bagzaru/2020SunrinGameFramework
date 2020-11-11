@@ -61,7 +61,7 @@ Vector2 Camera::ScreenPositionToWorld(const Vector2& screenPos)
 
 bool Camera::IsOnScreen(AABBCollider* col)
 {
-	return col->Intersected(screenBox);
+	return CollisionManager::Intersected(col, screenBox);
 }
 
 Camera* Camera::GetCamera()

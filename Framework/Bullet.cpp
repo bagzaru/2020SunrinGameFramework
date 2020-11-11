@@ -49,7 +49,10 @@ void Bullet::CheckOutOfScreen()
 void Bullet::OnCollision(GameObject* other)
 {
 	if (other->tag == Tag::Enemy)
+	{
+
 		Scene::Destroy(this);
+	}
 }
 
 void Bullet::OnDestroy() {

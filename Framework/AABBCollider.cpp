@@ -3,72 +3,76 @@
 
 
 AABBCollider::AABBCollider(GameObject* target, float width, float height)
-	:Collider(target)
+	:Collider(target), boundingBox(width, height)
 {
-	left = -width * 0.5f;
-	right = width * 0.5f;
-	top = height * 0.5f;
-	bottom = -height * 0.5f;
-	transform = target->transform;
 }
 
 AABBCollider::AABBCollider(GameObject* target, Sprite* sprite)
 	:Collider(target)
 {
-	transform = target->transform;
-	left = (float)(sprite->bitmap->GetPixelSize().width)*(-1.0f) * 0.5f;
-	right = (float)sprite->bitmap->GetPixelSize().width * 0.5f;
-	top = (float)sprite->bitmap->GetPixelSize().height * 0.5f;
-	bottom = (float)(sprite->bitmap->GetPixelSize().height)*(-1.0f) * 0.5f;
+	boundingBox.leftTop.x		= (float)(sprite->bitmap->GetPixelSize().width)*(-1.0f) * 0.5f;
+	boundingBox.rightBottom.x	= (float)sprite->bitmap->GetPixelSize().width * 0.5f;
+	boundingBox.leftTop.y		= (float)sprite->bitmap->GetPixelSize().height * 0.5f;
+	boundingBox.rightBottom.y	= (float)(sprite->bitmap->GetPixelSize().height)*(-1.0f) * 0.5f;
 }
 
 AABBCollider::AABBCollider(GameObject* target, RenderInfo* renderer)
 	:Collider(target)
 {
-	transform = target->transform;
-	left = (float)(-renderer->GetWidth() * 0.5f);
-	right = (float)renderer->GetWidth() * 0.5f;
-	top = (float)renderer->GetHeight() * 0.5f;
-	bottom = (float)(-renderer->GetHeight() * 0.5f);
+	boundingBox.leftTop.x = (float)(-renderer->GetWidth() * 0.5f);
+	boundingBox.rightBottom.x = (float)renderer->GetWidth() * 0.5f;
+	boundingBox.leftTop.y = (float)renderer->GetHeight() * 0.5f;
+	boundingBox.rightBottom.y = (float)(-renderer->GetHeight() * 0.5f);
 }
 
 AABBCollider::AABBCollider(GameObject* target,
 	float left, float bottom, float right, float top)
-	: Collider(target), left(left), right(right), top(top), bottom(bottom), transform(target->transform)
+	: Collider(target), boundingBox(left, top, right, bottom)
 {
 }
 
-bool AABBCollider::Intersected(AABBCollider* other)
+AABBCollider::AABBCollider(GameObject* target, const Vector2& size)
+	: Collider(target), boundingBox(size)
 {
-	float aLeft, bLeft;
-	float aRight, bRight;
-	float aTop, bTop;
-	float aBottom, bBottom;
-	aLeft = left * transform->scale.x
-		+ transform->position.x;
-	aRight = right * transform->scale.x
-		+ transform->position.x;
-	aTop = top * transform->scale.y
-		+ transform->position.y;
-	aBottom = bottom * transform->scale.y
-		+ transform->position.y;
-	bLeft = other->left * other->transform->scale.x
-		+ other->transform->position.x;
-	bRight = other->right * other->transform->scale.x
-		+ other->transform->position.x;
-	bTop = other->top * other->transform->scale.y
-		+ other->transform->position.y;
-	bBottom = other->bottom * other->transform->scale.y
-		+ other->transform->position.y;
-
-	return
-		!(
-		(aRight < bLeft) || (bRight < aLeft) ||
-			(aBottom > bTop) || (bBottom > aTop)
-			);
 }
+
+AABBCollider::AABBCollider(GameObject* target, const Vector2& leftTop, const Vector2& rightBottom)
+	: Collider(target), boundingBox(leftTop, rightBottom)
+{
+}
+//}
+//
+//bool AABBCollider::Intersected(const AABBBox& other)
+//{
+//	//절대 교차할 수 없는 경우를 구한 후, 그 역을 반환
+//	return !(
+//		(boundingBox.rightBottom.x < other.leftTop.x) ||
+//		(other.rightBottom.x < boundingBox.leftTop.x) ||
+//		(boundingBox.rightBottom.y < other.leftTop.y) ||
+//		(other.rightBottom.y < boundingBox.leftTop.y));
+//}
 
 
 AABBCollider::~AABBCollider()
 {
+}
+
+Collider::AABBBox AABBCollider::GetTransformedBox()
+{
+	return AABBBox(transform->position + boundingBox.leftTop, transform->position + boundingBox.rightBottom);
+}
+
+float AABBCollider::GetWidth()
+{
+	return boundingBox.rightBottom.x - boundingBox.leftTop.x;
+}
+
+float AABBCollider::GetHeight()
+{
+	return boundingBox.rightBottom.y - boundingBox.leftTop.y;
+}
+
+float AABBCollider::GetSquareDiagonal()
+{
+	return (GetWidth() * GetWidth()) + (GetHeight() * GetHeight());
 }
