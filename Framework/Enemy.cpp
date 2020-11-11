@@ -10,13 +10,16 @@ Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp, Transform* playe
 		this,
 		renderer
 	);
-	Scene::PushOnCurrentScene(col);
+	cc = new CircleCollider(this,(float)renderer->GetWidth());
+	//Scene::PushOnCurrentScene(col);
+	Scene::PushOnCurrentScene(cc);
 
 	tag = Tag::Enemy;
 }
 
 Enemy::~Enemy(){
 	SAFE_DELETE(col);
+	SAFE_DELETE(cc);
 }
 
 void Enemy::Update()

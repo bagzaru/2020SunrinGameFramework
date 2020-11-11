@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "AABBCollider.h"
+#include "CircleCollider.h"
 class Enemy :
 	public GameObject
 {
@@ -22,5 +23,6 @@ public:
 
 	//플레이어와 충돌
 	AABBCollider* col;
+	CircleCollider* cc;
 };
 

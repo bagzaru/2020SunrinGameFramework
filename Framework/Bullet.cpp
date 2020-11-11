@@ -8,7 +8,9 @@ Bullet::Bullet(const wchar_t* imagePath)
 	:GameObject(imagePath)
 {
 	col = new AABBCollider(this,renderer);
-	Scene::PushOnCurrentScene(col);
+	cc = new CircleCollider(this, renderer->GetWidth());
+	//Scene::PushOnCurrentScene(col);
+	Scene::PushOnCurrentScene(cc);
 	speed = 0.0f;
 	speedRate = 0.0f;
 	angle = 0.0f;

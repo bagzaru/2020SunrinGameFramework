@@ -49,36 +49,48 @@ Scene* Scene::GetCurrentScene()
 	return Scene::currentScene;
 }
 
-void Scene::PushOnCurrentScene(GameObject* gameObject)
+GameObject* Scene::PushOnCurrentScene(GameObject* gameObject)
 {
 	if (currentScene)
-		currentScene->Push(gameObject);
+		return currentScene->Push(gameObject);
 	else
 		std::cout << "Scene::PushObject error: 현재 씬이 없습니다.\n";
+	return nullptr;
 }
 
-void Scene::PushUIOnCurrentScene(GameObject* gameObject)
+GameObject* Scene::PushUIOnCurrentScene(GameObject* gameObject)
 {
 	if (currentScene)
-		currentScene->PushUI(gameObject);
+		return currentScene->PushUI(gameObject);
 	else
 		std::cout << "Scene::PushObject error: 현재 씬이 없습니다.\n";
+	return nullptr;
 }
 
-void Scene::PushOnCurrentScene(AABBCollider* col)
+AABBCollider* Scene::PushOnCurrentScene(AABBCollider* col)
 {
 	if (currentScene)
 	{
-		if (currentScene->collisionManager)
-			currentScene->collisionManager->PushBackCollider(col);		
-		else
-			std::cout << "Scene::PushObject: collisionManager가 없습니다.\n";		
+		return currentScene->Push(col);
 	}
 	else
 	{
 		std::cout << "Scene::PushObject: 현재 씬이 없습니다.\n";
 	}
+	return nullptr;
+}
 
+CircleCollider* Scene::PushOnCurrentScene(CircleCollider* col)
+{
+	if (currentScene)
+	{
+		return currentScene->Push(col);
+	}
+	else
+	{
+		std::cout << "Scene::PushObject: 현재 씬이 없습니다.\n";
+	}
+	return nullptr;
 }
 
 void Scene::Initialize()
@@ -169,6 +181,24 @@ GameObject* Scene::PushUI(GameObject* gameObject)
 		uiList.push_back(gameObject);
 	}
 	return gameObject;//받은 게임오브젝트를 그대로 반환
+}
+
+AABBCollider* Scene::Push(AABBCollider* col)
+{
+	if (currentScene->collisionManager)
+		return currentScene->collisionManager->PushBackCollider(col);
+	else
+		std::cout << "Scene::PushObject: collisionManager가 없습니다.\n";
+	return nullptr;
+}
+
+CircleCollider* Scene::Push(CircleCollider* col)
+{
+	if (currentScene->collisionManager)
+		return currentScene->collisionManager->PushBackCollider(col);
+	else
+		std::cout << "Scene::PushObject: collisionManager가 없습니다.\n";
+	return nullptr;
 }
 
 void Scene::Destroy(GameObject* o)

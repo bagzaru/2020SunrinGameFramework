@@ -7,10 +7,18 @@ CollisionManager::~CollisionManager()
 	aabbList.clear();
 }
 
-void CollisionManager::PushBackCollider(AABBCollider* col)
+AABBCollider* CollisionManager::PushBackCollider(AABBCollider* col)
 {
 	aabbList.push_back(col);
 	gameObjectList.push_back(col->target);
+	return col;
+}
+
+CircleCollider* CollisionManager::PushBackCollider(CircleCollider* col)
+{
+	circleList.push_back(col);
+	gameObjectList.push_back(col->target);
+	return col;
 }
 
 void CollisionManager::RemoveGameObject(GameObject* g)
@@ -25,11 +33,22 @@ void CollisionManager::RemoveGameObject(GameObject* g)
 			break;
 		}
 	}
+
+	std::list<CircleCollider*>::iterator iter2 = circleList.begin();
+	for (; iter2 != circleList.end(); iter2++)
+	{
+		if ((*iter2)->target == g)
+		{
+			circleList.erase(iter2);
+			break;
+		}
+	}
 }
 
 void CollisionManager::Update()
 {
 	//충돌 처리
+	//aabb<->aabb
 	for (std::list<AABBCollider*>::iterator i = aabbList.begin();
 		i!=aabbList.end(); i++)
 	{
@@ -38,6 +57,37 @@ void CollisionManager::Update()
 		for (; j != aabbList.end(); j++)
 		{
 			if(Intersected((*i),(*j)))
+			{
+				(*i)->target->OnCollision((*j)->target);
+				(*j)->target->OnCollision((*i)->target);
+			}
+		}
+	}
+
+	//circle<->circle
+	for (std::list<CircleCollider*>::iterator i = circleList.begin();
+		i != circleList.end(); i++)
+	{
+		std::list<AABBCollider*>::iterator j = aabbList.begin();
+		for (; j != aabbList.end(); j++)
+		{
+			if (Intersected((*j), (*i)))
+			{
+				(*i)->target->OnCollision((*j)->target);
+				(*j)->target->OnCollision((*i)->target);
+			}
+		}
+	}
+
+	//circle<->aabb
+	for (std::list<CircleCollider*>::iterator i = circleList.begin();
+		i != circleList.end(); i++)
+	{
+		std::list<CircleCollider*>::iterator j = i;
+		j++;
+		for (; j != circleList.end(); j++)
+		{
+			if (Intersected((*i), (*j)))
 			{
 				(*i)->target->OnCollision((*j)->target);
 				(*j)->target->OnCollision((*i)->target);
@@ -78,5 +128,35 @@ bool CollisionManager::Intersected(AABBCollider* a, AABBCollider* b)
 		(aRight < bLeft) || (bRight < aLeft) ||
 			(aBottom > bTop) || (bBottom > aTop)
 			);
+}
+
+bool CollisionManager::Intersected(CircleCollider* a, CircleCollider* b)
+{
+	Vector2 centerVector = b->GetTransformedCircle().center - a->GetTransformedCircle().center;					//중심을 잇는 벡터
+	float distance = centerVector.DotProduct(centerVector);		//자기 자신의 내적==제곱
+	return distance < ((a->boundingCircle.radius + b->boundingCircle.radius) * (a->boundingCircle.radius + b->boundingCircle.radius));	//거리비교
+}
+
+bool CollisionManager::Intersected(AABBCollider* a, CircleCollider* b)
+{
+	Vector2 circleDistance;
+	Collider::AABBBox abox = a->GetTransformedBox();
+	Collider::Circle bcircle = b->GetTransformedCircle();
+	circleDistance.x = (abox.rightBottom.x + abox.leftTop.x) * 0.5f - bcircle.center.x;
+	circleDistance.y = (abox.rightBottom.y + abox.leftTop.y) * 0.5f - bcircle.center.y;
+	Vector2 halfBox = Vector2((abox.rightBottom - abox.leftTop) * 0.5f);
+
+	circleDistance.x *= (circleDistance.x >= 0) ? 1.0f : -1.0f;
+	circleDistance.y *= (circleDistance.y >= 0) ? 1.0f : -1.0f;
+
+	if (circleDistance.x > (halfBox.x + bcircle.radius)) { return false; }
+	if (circleDistance.y > (halfBox.y + bcircle.radius)) { return false; }
+
+	if (circleDistance.x <= halfBox.x) { return true; }
+	if (circleDistance.y <= halfBox.y) { return true; }
+
+	Vector2 corner = circleDistance - halfBox;
+
+	return (corner.DotProduct(corner) <= (bcircle.radius * bcircle.radius));
 }
 	

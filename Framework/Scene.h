@@ -21,9 +21,10 @@ public:
 	static Scene* GetCurrentScene();
 
 	static void Destroy(GameObject* gameObject);
-	static void PushOnCurrentScene(GameObject* gameObject);
-	static void PushUIOnCurrentScene(GameObject* gameObject);
-	static void PushOnCurrentScene(AABBCollider* col);
+	static GameObject* PushOnCurrentScene(GameObject* gameObject);
+	static GameObject* PushUIOnCurrentScene(GameObject* gameObject);
+	static AABBCollider* PushOnCurrentScene(AABBCollider* col);
+	static CircleCollider* PushOnCurrentScene(CircleCollider* col);
 
 private:
 	D2DApp* d2dApp;
@@ -45,6 +46,8 @@ private:
 public:
 	GameObject* Push(GameObject* gameObject);
 	GameObject* PushUI(GameObject* gameObject);
+	AABBCollider* Push(AABBCollider* col);
+	CircleCollider* Push(CircleCollider* col);
 	//void Destroy(GameObject* o);
 
 public:

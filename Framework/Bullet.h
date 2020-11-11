@@ -1,11 +1,13 @@
 #pragma once
 #include "GameObject.h"
 #include "AABBCollider.h"
+#include "CircleCollider.h"
 class Bullet :
 	public GameObject
 {
 public:
 	AABBCollider* col;
+	CircleCollider* cc;
 	float speed, speedRate;	//속도, 가속도
 	float angle, angleRate;//각도, 각속도
 
