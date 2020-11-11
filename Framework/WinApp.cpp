@@ -4,6 +4,9 @@
 int WinApp::width = 0;
 int WinApp::height = 0;
 
+float WinApp::widthF = 0;
+float WinApp::heightF = 0;
+
 WinApp::WinApp():hWnd(NULL), isFullScreen(false)
 {
 
@@ -22,6 +25,16 @@ int WinApp::GetScreenWidth()
 int WinApp::GetScreenHeight()
 {
 	return height;
+}
+
+float WinApp::GetScreenWidthF()
+{
+	return widthF;
+}
+
+float WinApp::GetScreenHeightF()
+{
+	return heightF;
 }
 
 bool WinApp::GetFullScreened()
@@ -76,6 +89,8 @@ bool WinApp::Initialize(const wchar_t* title, int width, int height, bool isFull
 
 	this->width = width;
 	this->height = height;
+	this->widthF = (float)width;
+	this->heightF = (float)height;
 
 	//윈도우 속성 수정
 	AdjustWindowRectEx(&windowRect, style, FALSE, exstyle);

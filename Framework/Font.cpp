@@ -30,6 +30,9 @@ void Font::CreateFontStyle(const wchar_t* fontName, float fontSize, float red, f
 	);
 	if (!textFormat)
 		printf("폰트 생성 실패\n");
+	textFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+	textFormat->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
+	textFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
 	D2D1::ColorF color(red, green, blue, alpha);
 	colorBrush
 		= Scene::GetCurrentScene()->GetRenderingManager()->CreateSolidColorBrush(color);

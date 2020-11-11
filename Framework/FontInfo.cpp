@@ -2,14 +2,14 @@
 #include "FontInfo.h"
 
 FontInfo::FontInfo(Font* font)
-	: font(font), text(text)
+	: RenderInfo(), font(font), text(text)
 {
+	textRect.left = textRect.right = textRect.bottom = textRect.top = 0.0f;
 	initialized = true;
 }
 
-void FontInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition)
+void FontInfo::Render(D2DApp* d2dApp, Transform* transform, Vector2 screenPosition)
 {
-
 	if (!d2dApp)
 	{
 		printf("FontInfo::Render: d2dApp이 없습니다.\n");
@@ -22,26 +22,38 @@ void FontInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, 
 		printf("FontInfo::Render 실패, 렌더타겟이 없습니다.\n");
 		return;
 	}
-	FontRender(renderTarget, screenSize, transform, cameraPosition, nullptr);
+	FontRender(renderTarget, transform, nullptr, screenPosition);
 }
 
-void FontInfo::FontRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize, Transform* transform, Vector2 cameraPosition, D2D1_RECT_F* sourceRect)
+void FontInfo::FontRender(ID2D1RenderTarget* renderTarget, Transform* transform, D2D1_RECT_F* sourceRect, Vector2 screenPosition)
 {
 	if (!font || !font->textFormat || !font->colorBrush)
 	{
 		printf("FontInfo::font 정보가 존재하지 않습니다.\n");
 		return;
 	}
+	Vector2 screenSize;
+	screenSize.x = WinApp::GetScreenWidthF();
+	screenSize.y = WinApp::GetScreenHeightF();
 
+	UINT32 len = text.length();
+	   
 	Point positioningCenter;
-	positioningCenter.x = transform->position.x - transform->positioningCenter.x;
-	positioningCenter.y = transform->position.y - transform->positioningCenter.y;
+	positioningCenter.x = screenPosition.x;
+	positioningCenter.y = screenPosition.y;
+	//std::cout << screenPosition.x << "," << screenPosition.y << "\n";
 
 	D2D1_RECT_F rect;
-	rect.left = positioningCenter.x - screenSize.x * 0.5f;
-	rect.top = positioningCenter.y - screenSize.y * 0.5f;
-	rect.right = positioningCenter.x + screenSize.x * 0.5f;
-	rect.bottom = positioningCenter.y + screenSize.y * 0.5f;
+	rect.left = positioningCenter.x + textRect.left;
+	rect.top = positioningCenter.y + textRect.top ;
+	rect.right = positioningCenter.x +textRect.right;
+	rect.bottom = positioningCenter.y + textRect.bottom;
+
+	/*rect.left = positioningCenter.x;
+	rect.top = positioningCenter.y;
+	rect.right = positioningCenter.x;
+	rect.bottom = positioningCenter.y;*/
+	//std::cout << rect.left << "," << rect.right << ","<<rect.top<<","<<rect.bottom<<"\n";
 
 	Point scalingCenter;
 	scalingCenter.x = positioningCenter.x + transform->scalingCenter.x;
@@ -61,10 +73,10 @@ void FontInfo::FontRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize, T
 			rotatingCenter
 		));
 	//UINT32 len = wcslen(text);	//WCHAR 문자열 쓸 경우
-	UINT32 len = text.length();
-	renderTarget->DrawTextW(text.c_str(), len, font->textFormat,
+	/*renderTarget->DrawTextW(text.c_str(), len, font->textFormat,
 		D2D1::RectF(positioningCenter.x, positioningCenter.y, positioningCenter.x + 640.0f, positioningCenter.y + 415.0f),
-		font->colorBrush);
-
-
+		font->colorBrush);*/
+	renderTarget->DrawTextW(text.c_str(), len, font->textFormat,
+		rect,
+		font->colorBrush); 
 }

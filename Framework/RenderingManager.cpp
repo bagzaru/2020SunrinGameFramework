@@ -77,8 +77,8 @@ ID2D1SolidColorBrush* RenderingManager::CreateSolidColorBrush(const D2D1_COLOR_F
 
 void RenderingManager::BeginRender()
 {
-	screenSize.x = (float)WinApp::GetScreenWidth();
-	screenSize.y = (float)WinApp::GetScreenHeight();
+	screenSize.x = WinApp::GetScreenWidthF();
+	screenSize.y = WinApp::GetScreenHeightF();
 	d2dApp->BeginRender();
 }
 

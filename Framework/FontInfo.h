@@ -9,7 +9,8 @@ public:
 	Font* font;
 	//wchar_t* text;
 	std::wstring text;
-	virtual void Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition);
-	void FontRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize, Transform* transform, Vector2 cameraPosition, D2D1_RECT_F* sourceRect);
+	D2D1_RECT_F textRect;
+	virtual void Render(D2DApp* d2dApp, Transform* transform, Vector2 screenPosition);
+	void FontRender(ID2D1RenderTarget* renderTarget, Transform* transform,  D2D1_RECT_F* sourceRect, Vector2 screenPosition);
 };
 

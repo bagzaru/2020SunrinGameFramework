@@ -3,7 +3,7 @@
 #include "TimeManager.h"
 
 AnimationInfo::AnimationInfo()
-	:currentState(0), currentAnimation(nullptr)
+	:RenderInfo(), currentState(0), currentAnimation(nullptr)
 {
 	initialized = true;
 }
@@ -15,7 +15,7 @@ AnimationInfo::~AnimationInfo()
 	animations.clear();
 }
 
-void AnimationInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition)
+void AnimationInfo::Render(D2DApp* d2dApp, Transform* transform, Vector2 screenPosition)
 {
 	if (!d2dApp)
 	{
@@ -29,7 +29,7 @@ void AnimationInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transf
 		return;
 	}
 	UpdateRenderInfo();
-	BasicRender(renderTarget, screenSize, transform, cameraPosition, GetSourceRect());
+	BasicRender(renderTarget, transform, GetSourceRect(),screenPosition);
 }
 
 void AnimationInfo::UpdateRenderInfo()

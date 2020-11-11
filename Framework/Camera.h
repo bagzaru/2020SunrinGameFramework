@@ -5,8 +5,8 @@ class Camera :
 	public GameObject
 {
 private:
-	int screenWidth;
-	int screenHeight;
+	float screenWidth;
+	float screenHeight;
 	float halfWidth;
 	float halfHeight;
 

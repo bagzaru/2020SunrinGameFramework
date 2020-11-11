@@ -8,5 +8,6 @@ void TestScene::Initialize()
 	testObject->transform->SetPosition(0.0f, 0.0f);
 
 	FontObject* fo = new FontObject();
-	Push(fo);
+	PushUI(fo);
+	fo->transform->SetPosition(400.0f, 300.0f);
 }

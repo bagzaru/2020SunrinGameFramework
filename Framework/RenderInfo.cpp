@@ -3,12 +3,12 @@
 #include "Framework.h"
 
 RenderInfo::RenderInfo()
-	: Component(), currentSprite(nullptr), alpha(1.0f), initialized(false),width(0),height(0)
+	: Component(), currentSprite(nullptr), alpha(1.0f), initialized(false), width(0), height(0)
 {
 }
 
 RenderInfo::RenderInfo(Sprite* startSprite, float alpha)
-	:Component(),currentSprite(startSprite),alpha(alpha),initialized(true)
+	: Component(), currentSprite(startSprite), alpha(alpha), initialized(true)
 {
 	//Sprite 크기 받아옴
 	if (startSprite)
@@ -60,7 +60,7 @@ D2D1_RECT_F* RenderInfo::GetSourceRect()
 	return nullptr;
 }
 
-void RenderInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition)
+void RenderInfo::Render(D2DApp* d2dApp, Transform* transform, Vector2 screenPosition)
 {
 	if (!d2dApp)
 	{
@@ -74,10 +74,10 @@ void RenderInfo::Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform
 		printf("RenderInfo::Render 실패, 렌더타겟이 없습니다.\n");
 		return;
 	}
-	BasicRender(renderTarget, screenSize, transform, cameraPosition, nullptr);
+	BasicRender(renderTarget, transform, nullptr, screenPosition);
 }
 
-void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize, Transform* transform, Vector2 cameraPosition, D2D1_RECT_F* sourceRect)
+void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Transform* transform, D2D1_RECT_F* sourceRect, Vector2 screenPosition)
 {
 	if (!renderTarget)
 	{
@@ -102,13 +102,8 @@ void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize
 	size.y = (float)GetHeight();
 
 	Point positioningCenter;
-	positioningCenter.x
-		= transform->position.x - transform->positioningCenter.x - cameraPosition.x + screenSize.x * 0.5f;
-	positioningCenter.y
-		= screenSize.y * 0.5f - transform->position.y + transform->positioningCenter.y + cameraPosition.y;
-	//y축이 아래를 향할경우
-	/*positioningCenter.y
-		= transform->position.y - transform->positioningCenter.y - cameraPosition.y + screenSize.y*0.5f;*/
+	positioningCenter.x = screenPosition.x;
+	positioningCenter.y = screenPosition.y;
 
 	D2D1_RECT_F rect;
 	rect.left = positioningCenter.x - size.x * 0.5f;//* o->scale.x;
@@ -136,4 +131,20 @@ void RenderInfo::BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize
 	renderTarget->DrawBitmap(currentSprite->bitmap, &rect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, sourceRect);
 
 
+}
+
+Vector2 RenderInfo::ComputeWorldPosition(Vector2 screenSize, Transform* transform, Vector2 cameraPosition)
+{
+	return Vector2(
+		transform->position.x - transform->positioningCenter.x - cameraPosition.x + screenSize.x * 0.5f,
+		transform->positioningCenter.y - transform->position.y + screenSize.y * 0.5f + cameraPosition.y
+	);
+}
+
+Vector2 RenderInfo::ComputeUIPosition(Transform* transform)
+{
+	return Vector2(
+		transform->position.x - transform->positioningCenter.x,
+		transform->position.y - transform->positioningCenter.y
+	);
 }

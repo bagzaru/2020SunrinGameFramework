@@ -57,6 +57,14 @@ void Scene::PushOnCurrentScene(GameObject* gameObject)
 		std::cout << "Scene::PushObject error: 현재 씬이 없습니다.\n";
 }
 
+void Scene::PushUIOnCurrentScene(GameObject* gameObject)
+{
+	if (currentScene)
+		currentScene->PushUI(gameObject);
+	else
+		std::cout << "Scene::PushObject error: 현재 씬이 없습니다.\n";
+}
+
 void Scene::PushOnCurrentScene(AABBCollider* col)
 {
 	if (currentScene)
@@ -106,6 +114,7 @@ void Scene::DeleteDestroyedObjects()
 		(*i)->OnDestroy();
 		gameObjectList.remove(*i);		//게임오브젝트리스트에서 삭제
 		renderableList.remove(*i);		//렌더러블 리스트에서 삭제
+		uiList.remove(*i);		//렌더러블 리스트에서 삭제
 		collisionManager->RemoveGameObject(*i);
 		GameObject* t = *i;
 		SAFE_DELETE(t);				//delete
@@ -118,11 +127,19 @@ void Scene::DeleteDestroyedObjects()
 void Scene::Render()
 {
 	renderingManager->BeginRender();
+
 	Vector2 screenSize;
-	screenSize.x = (float)WinApp::GetScreenWidth();
-	screenSize.y = (float)WinApp::GetScreenHeight();
+	screenSize.x = WinApp::GetScreenWidthF();
+	screenSize.y = WinApp::GetScreenHeightF();
 	for (auto& i : renderableList)
-		i->renderer->Render(Scene::d2dApp, screenSize, i->transform,camera->transform->position);
+	{
+		i->renderer->Render(Scene::d2dApp, i->transform,i->renderer->ComputeWorldPosition(screenSize,i->transform,camera->transform->position));
+	}
+
+	for (auto& i : uiList)
+	{
+		i->renderer->Render(Scene::d2dApp, i->transform, i->renderer->ComputeUIPosition(i->transform));
+	}
 		//renderingManager->Render(i->renderer, i->transform,camera->transform->position);
 		//renderingManager->Render(i->renderer, i->transform);
 	renderingManager->EndRender();
@@ -137,6 +154,19 @@ GameObject* Scene::Push(GameObject* gameObject)
 	if (gameObject->renderer->GetInitialized())
 	{
 		renderableList.push_back(gameObject);
+	}
+	return gameObject;//받은 게임오브젝트를 그대로 반환
+}
+
+GameObject* Scene::PushUI(GameObject* gameObject)
+{
+	//게임 오브젝트에 집어넣음
+	gameObjectList.push_back(gameObject);
+	//렌더러에 이미지가 있을경우
+	//렌더러블 리스트에 집어넣음
+	if (gameObject->renderer->GetInitialized())
+	{
+		uiList.push_back(gameObject);
 	}
 	return gameObject;//받은 게임오브젝트를 그대로 반환
 }

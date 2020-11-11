@@ -22,6 +22,7 @@ public:
 
 	static void Destroy(GameObject* gameObject);
 	static void PushOnCurrentScene(GameObject* gameObject);
+	static void PushUIOnCurrentScene(GameObject* gameObject);
 	static void PushOnCurrentScene(AABBCollider* col);
 
 private:
@@ -30,6 +31,7 @@ private:
 	std::list<GameObject*> renderableList;
 	std::list<GameObject*> gameObjectList;
 	std::list<GameObject*> destroyedObjectList;
+	std::list<GameObject*> uiList;
 	RenderingManager* renderingManager;
 	CollisionManager* collisionManager;
 
@@ -42,6 +44,7 @@ private:
 
 public:
 	GameObject* Push(GameObject* gameObject);
+	GameObject* PushUI(GameObject* gameObject);
 	//void Destroy(GameObject* o);
 
 public:

@@ -12,6 +12,7 @@ public:
 	RenderInfo(Sprite* startSprite, float alpha = 1.0f);
 	virtual ~RenderInfo() {}
 protected:
+
 	Sprite* currentSprite;
 	float alpha;
 	bool initialized;
@@ -26,7 +27,10 @@ public:
 	virtual D2D1_RECT_F* GetSourceRect();
 	virtual void Update() {}
 	virtual void UpdateRenderInfo() {}
-	virtual void Render(D2DApp* d2dApp, Vector2 screenSize, Transform* transform, Vector2 cameraPosition);
-	void BasicRender(ID2D1RenderTarget* renderTarget, Vector2 screenSize, Transform* transform, Vector2 cameraPosition, D2D1_RECT_F* sourceRect);
+	virtual void Render(D2DApp* d2dApp, Transform* transform, Vector2 screenPosition);
+	void BasicRender(ID2D1RenderTarget* renderTarget, Transform* transform, D2D1_RECT_F* sourceRect, Vector2 screenPosition);
+	
+	Vector2 ComputeWorldPosition(Vector2 screenSize, Transform* transform, Vector2 cameraPosition);
+	Vector2 ComputeUIPosition(Transform* transform);
 };
 
