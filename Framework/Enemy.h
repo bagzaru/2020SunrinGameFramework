@@ -23,6 +23,5 @@ public:
 
 	//플레이어와 충돌
 	AABBCollider* col;
-	CircleCollider* cc;
 };
 
