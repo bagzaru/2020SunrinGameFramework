@@ -1,6 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include "BulletManager.h"		//여기 추가
 #include "Gun.h"
 #include "SoundEvent.h"
 class Player :

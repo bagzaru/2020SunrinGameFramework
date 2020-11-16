@@ -5,9 +5,8 @@ void TestScene::Initialize()
 {
 	testObject = new AnimationObject(new AnimationInfo());
 	Push(testObject);
-	testObject->transform->SetPosition(0.0f, 0.0f);
 
-	FontObject* fo = new FontObject();
+	/*FontObject* fo = new FontObject();
 	PushUI(fo);
-	fo->transform->SetPosition(400.0f, 300.0f);
+	fo->transform->SetPosition(400.0f, 300.0f);*/
 }

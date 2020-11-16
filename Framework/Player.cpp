@@ -18,6 +18,8 @@ Player::Player()
 }
 Player::~Player()
 {
+	SAFE_DELETE(col);
+	SAFE_DELETE(se);
 	SAFE_DELETE(gun);
 }
 void Player::Update() {
@@ -87,7 +89,7 @@ void Player::OnCollision(GameObject* other)
 {
 	if (timer > delay && other->tag == Tag::Enemy)
 	{
-		//hp -= 1;
+		hp -= 1;
 		std::cout << "체력이 1 달았습니다. 현재" << hp << "남음\n";
 		timer = 0.0f;
 	}

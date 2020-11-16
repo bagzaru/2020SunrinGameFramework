@@ -41,7 +41,7 @@ void Bullet::CheckOutOfScreen()
 {
 	if (!Camera::GetCamera()->IsOnScreen(col))
 	{
-		printf("화면 밖에 나감!\n");
+		//printf("화면 밖에 나감!\n");
 		Scene::Destroy(this);
 	}
 }
@@ -56,5 +56,5 @@ void Bullet::OnCollision(GameObject* other)
 }
 
 void Bullet::OnDestroy() {
-	std::cout << "총알 삭제됨 ㅠㅠ\n";
+	//std::cout << "총알 삭제됨 ㅠㅠ\n";
 }

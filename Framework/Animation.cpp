@@ -6,6 +6,10 @@ Animation::Animation(const int state, float fps)
 {
 }
 
+Animation::~Animation()
+{
+}
+
 void Animation::SetFPS(float fps)
 {
 	this->fps = fps;

@@ -9,6 +9,7 @@ class Animation
 {
 public:
 	Animation(const int state, float fps);
+	virtual ~Animation();
 public:
 	const int state;		//애니메이션의 state number
 	int currentFrame;			//현재 frame number

@@ -22,6 +22,10 @@
 #include <mfidl.h>
 #include <mfreadwrite.h>
 
+//메모리 누수 체크용
+//main 함수 마지막에 _CrtDumpMemoryLeaks(); 추가해주면 확인 가능
+//#include "CheckMemoryLeak.h"
+
 #pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "WindowsCodecs.lib")
 #pragma comment(lib, "Winmm.lib")//이거

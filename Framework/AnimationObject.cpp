@@ -35,15 +35,12 @@ AnimationObject::AnimationObject(AnimationInfo* animInfo)
 
 	moveSpeed = 100.0f;	//이동 테스트
 
-	aabb = new AABBCollider(this, renderer);
 	cc = new CircleCollider(this, (float)renderer->GetWidth());
-	//Scene::PushOnCurrentScene(aabb);
 	Scene::PushOnCurrentScene(cc);
 }
 
 AnimationObject::~AnimationObject()
 {
-	SAFE_DELETE(aabb);
 	SAFE_DELETE(cc);
 }
 
@@ -53,9 +50,9 @@ void AnimationObject::Update()
 	//InputManager::GetKey~함수를 통해 입력을 체크할 수 있습니다.
 	//4일차 수업 내용을 참고하세요.
 	if (InputManager::GetKeyState(VK_UP))
-		transform->position.y -= moveSpeed * TimeManager::GetDeltaTime();
-	if (InputManager::GetKeyState(VK_DOWN))
 		transform->position.y += moveSpeed * TimeManager::GetDeltaTime();
+	if (InputManager::GetKeyState(VK_DOWN))
+		transform->position.y -= moveSpeed * TimeManager::GetDeltaTime();
 	if (InputManager::GetKeyState(VK_RIGHT))
 		transform->position.x += moveSpeed * TimeManager::GetDeltaTime();
 	if (InputManager::GetKeyState(VK_LEFT))

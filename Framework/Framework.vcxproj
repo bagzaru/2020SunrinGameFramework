@@ -199,6 +199,7 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="WinApp.h" />
+    <ClInclude Include="CheckMemoryLeak.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl" />

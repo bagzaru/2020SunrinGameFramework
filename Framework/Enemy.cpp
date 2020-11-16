@@ -37,7 +37,7 @@ void Enemy::OnCollision(GameObject* other)
 	if (other->tag == Tag::Bullet)
 	{
 		--hp;
-		std::cout << "적이 맞았습니다 적 hp: " << hp << "\n";
+		//std::cout << "적이 맞았습니다 적 hp: " << hp << "\n";
 	}
 	if (hp <= 0)
 	{

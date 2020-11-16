@@ -286,6 +286,9 @@
     <ClInclude Include="CircleCollider.h">
       <Filter>Framework\Components\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="CheckMemoryLeak.h">
+      <Filter>Framework\stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

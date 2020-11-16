@@ -19,7 +19,6 @@ public:
 	ListAnimation* testAnim1;
 	SheetAnimation* testAnim2;
 
-	AABBCollider* aabb;
 	CircleCollider* cc;
 
 	float moveSpeed;
