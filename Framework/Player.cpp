@@ -63,12 +63,12 @@ void Player::Shoot()
 	float angle = ComputeMouseAngle();
 	if (InputManager::GetKeyDown(VK_LBUTTON))
 	{
-		se->Play();
+		//se->Play();
 		gun->Shoot(transform->position, angle);
 	}
 	if (InputManager::GetKeyUp(VK_LBUTTON))
 	{
-		se->Stop();
+		//se->Stop();
 	}
 	transform->rotatingAngle = angle;
 }

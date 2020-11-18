@@ -70,6 +70,9 @@
     <Filter Include="Framework\stdafx">
       <UniqueIdentifier>{bcc4263f-6a5e-40ad-93ff-066f8bdc8406}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene\UI">
+      <UniqueIdentifier>{c5a9e657-ab30-4355-898b-c9c00323eb03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D2DApp.cpp">
@@ -174,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="CircleCollider.cpp">
       <Filter>Framework\Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>GameScene\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="CheckMemoryLeak.h">
       <Filter>Framework\stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>GameScene\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

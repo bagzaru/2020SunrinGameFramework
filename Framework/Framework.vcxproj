@@ -154,6 +154,7 @@
     <ClCompile Include="RenderInfo.cpp" />
     <ClCompile Include="RenderingManager.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="SheetAnimation.cpp" />
     <ClCompile Include="SoundEvent.cpp" />
     <ClCompile Include="TestScene.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="RenderInfo.h" />
     <ClInclude Include="RenderingManager.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="SheetAnimation.h" />
     <ClInclude Include="SoundEvent.h" />
     <ClInclude Include="stdafx.h" />

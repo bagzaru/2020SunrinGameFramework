@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Scene.h"
 #include "TimeManager.h"
+#include "ScoreManager.h"
 
 Enemy::Enemy(const wchar_t* imagePath, float moveSpeed, int hp, Transform* playerTransform)
 	: GameObject(imagePath),hp(hp),moveSpeed(moveSpeed), playerTransform(playerTransform)
@@ -37,10 +38,10 @@ void Enemy::OnCollision(GameObject* other)
 	if (other->tag == Tag::Bullet)
 	{
 		--hp;
-		//std::cout << "적이 맞았습니다 적 hp: " << hp << "\n";
 	}
 	if (hp <= 0)
 	{
 		Scene::Destroy(this);
+		ScoreManager::AddScore(10);
 	}
 }

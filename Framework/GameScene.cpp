@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameScene.h"
+#include "ScoreManager.h"
 
 GameScene::GameScene()
 {
@@ -19,4 +20,6 @@ void GameScene::Initialize()
 
 	spawner = new EnemySpawner(player->transform);
 	Push(spawner);
+
+	PushUI(new ScoreManager());
 }
