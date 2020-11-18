@@ -73,6 +73,12 @@
     <Filter Include="GameScene\UI">
       <UniqueIdentifier>{c5a9e657-ab30-4355-898b-c9c00323eb03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StartScene">
+      <UniqueIdentifier>{27b2be83-2324-42a0-8b47-93deea9eb0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EndingScene">
+      <UniqueIdentifier>{6ecb2b44-2528-4922-abaa-8e40cced20db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D2DApp.cpp">
@@ -181,6 +187,21 @@
     <ClCompile Include="ScoreManager.cpp">
       <Filter>GameScene\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>StartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>StartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>StartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitButton.cpp">
+      <Filter>StartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingScene.cpp" />
+    <ClCompile Include="TextObject.cpp" />
+    <ClCompile Include="EndToMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -298,6 +319,21 @@
     <ClInclude Include="ScoreManager.h">
       <Filter>GameScene\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>StartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>StartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>StartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitButton.h">
+      <Filter>StartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingScene.h" />
+    <ClInclude Include="TextObject.h" />
+    <ClInclude Include="EndToMain.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

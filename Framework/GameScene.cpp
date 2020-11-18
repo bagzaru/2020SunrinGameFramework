@@ -2,13 +2,6 @@
 #include "GameScene.h"
 #include "ScoreManager.h"
 
-GameScene::GameScene()
-{
-}
-
-GameScene::~GameScene()
-{
-}
 
 void GameScene::Initialize()
 {

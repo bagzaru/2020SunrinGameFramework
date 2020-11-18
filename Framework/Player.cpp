@@ -4,6 +4,8 @@
 #include "TimeManager.h"
 #include "Bullet.h"
 #include "Scene.h"
+#include "EndingScene.h"
+#include "ScoreManager.h"
 
 Player::Player()
 	:GameObject(L"resources/Player.png"),
@@ -96,7 +98,7 @@ void Player::OnCollision(GameObject* other)
 	if (hp == 0)
 	{
 		std::cout << "게임 오바";
-		Scene::Destroy(this);
+		Scene::ChangeScene(new EndingScene(ScoreManager::instance->score));
 	}
 }
 
@@ -105,6 +107,11 @@ void Player::CollisionTimer()
 	if (timer <= delay)
 	{
 		timer += TimeManager::GetDeltaTime();
+		renderer->alpha = 0.5f;
+	}
+	else
+	{
+		renderer->alpha = 1.0f;
 	}
 }
 

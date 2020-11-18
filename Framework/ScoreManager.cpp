@@ -4,7 +4,7 @@
 ScoreManager* ScoreManager::instance;
 
 ScoreManager::ScoreManager()
-	:GameObject(fontRenderer = new FontInfo())
+	:GameObject(fontRenderer = new FontInfo()), score(0)
 {
 	font = new Font(L"±Ã¼­", 20.0f, 1.0f, 1.0f, 1.0f, 1.0f, false);
 	fontRenderer->font = this->font;
@@ -23,6 +23,7 @@ ScoreManager::~ScoreManager()
 
 void ScoreManager::UpdateScore()
 {
+	fontRenderer->font->GetFontStretch();
 	instance->fontRenderer->text = L"Score: " + std::to_wstring(instance->score);
 }
 

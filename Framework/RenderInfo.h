@@ -14,9 +14,11 @@ public:
 protected:
 
 	Sprite* currentSprite;
-	float alpha;
 	bool initialized;
 	int width, height;
+
+public:
+	float alpha;
 
 public:
 	Sprite* GetCurrentSprite();

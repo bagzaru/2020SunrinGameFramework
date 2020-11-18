@@ -22,5 +22,6 @@ public:
 	float GetSquareDiagonal();
 
 	bool isMouseOn();
+	bool isMouseOnUI();
 };
 
