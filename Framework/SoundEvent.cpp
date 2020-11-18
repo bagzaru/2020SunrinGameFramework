@@ -16,6 +16,7 @@ SoundEvent::SoundEvent(const wchar_t* path)
 
 SoundEvent::~SoundEvent()
 {
+	Stop();
 }
 
 void SoundEvent::LoadFile(const wchar_t* path)

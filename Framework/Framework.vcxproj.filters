@@ -199,9 +199,13 @@
     <ClCompile Include="ExitButton.cpp">
       <Filter>StartScene</Filter>
     </ClCompile>
-    <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="TextObject.cpp" />
-    <ClCompile Include="EndToMain.cpp" />
+    <ClCompile Include="EndingScene.cpp">
+      <Filter>EndingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="EndToMain.cpp">
+      <Filter>EndingScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -331,9 +335,13 @@
     <ClInclude Include="ExitButton.h">
       <Filter>StartScene</Filter>
     </ClInclude>
-    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="TextObject.h" />
-    <ClInclude Include="EndToMain.h" />
+    <ClInclude Include="EndToMain.h">
+      <Filter>EndingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingScene.h">
+      <Filter>EndingScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">
