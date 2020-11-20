@@ -12,6 +12,7 @@ public:
 
 	//Sound
 	SoundEvent* se;
+	SoundEvent* bgm;
 
 	//이동
 	float moveSpeed;		//이동 속도

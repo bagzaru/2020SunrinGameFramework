@@ -17,11 +17,15 @@ Player::Player()
 	Scene::PushOnCurrentScene(col);
 	se = new SoundEvent();
 	se->LoadFile(L"resources/laser.mp3");
+	bgm = new SoundEvent();
+	bgm->LoadFile(L"resources/test.wav");
+	bgm->Play();
 }
 Player::~Player()
 {
 	SAFE_DELETE(col);
 	SAFE_DELETE(se);
+	SAFE_DELETE(bgm);
 	SAFE_DELETE(gun);
 }
 void Player::Update() {
