@@ -8,12 +8,10 @@ EndingScene::EndingScene(int score)
 	std::wstring a = L"당신의 점수는";
 	std::wstring b = L"점 입니다.";
 	ment = a + std::to_wstring(score) + b;
-	std::cout << "x";
 }
 
 EndingScene::~EndingScene()
 {
-	std::cout << "외않되";
 }
 
 void EndingScene::Initialize()

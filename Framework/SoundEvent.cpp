@@ -17,6 +17,11 @@ SoundEvent::SoundEvent(const wchar_t* path)
 SoundEvent::~SoundEvent()
 {
 	Stop();
+	if(sourceVoice)
+		sourceVoice->DestroyVoice();
+	if(waveFormat)
+		CoTaskMemFree(waveFormat);
+	audioData.clear();
 }
 
 void SoundEvent::LoadFile(const wchar_t* path)
