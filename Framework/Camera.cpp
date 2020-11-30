@@ -16,18 +16,6 @@ Camera::Camera()
 	//printf("w: %f, h: %f\n", halfWidth, halfHeight);
 }
 
-Camera::Camera(float width, float height, RenderInfo* renderer)
-	:GameObject(renderer)
-{
-	screenWidth = width;
-	screenHeight = height;
-	halfWidth = screenWidth * 0.5f;
-	halfHeight = screenHeight * 0.5f;
-
-	screenBox = new AABBCollider(this, -halfWidth, -halfHeight, halfWidth, halfHeight);
-
-}
-
 Camera::~Camera()
 {
 	SAFE_DELETE(screenBox);

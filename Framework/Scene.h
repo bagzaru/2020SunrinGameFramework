@@ -60,6 +60,5 @@ public:
 	SubScreen* subScreen;
 	void SubRender();
 	D2DApp* GetD2DApp();
-
 };
 

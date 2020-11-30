@@ -57,7 +57,6 @@ public:
 	IDWriteFactory* GetDwriteFactory();
 
 public:
-	bool testing;
 	ID2D1BitmapRenderTarget* CreateSubRenderTarget(float width, float height);
 };
 

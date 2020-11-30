@@ -4,7 +4,6 @@
 
 D2DApp::D2DApp(WinApp* winApp) : winApp(winApp), factory(nullptr), wicFactory(nullptr), renderTarget(nullptr), example(nullptr)
 {
-	testing = true;
 }
 
 bool D2DApp::Initialize()

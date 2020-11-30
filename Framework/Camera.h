@@ -24,7 +24,6 @@ private:
 	AABBCollider* screenBox;
 public:
 	Camera();
-	Camera(float width, float height, RenderInfo* renderer);
 	virtual ~Camera();	//상속될 가능성이 있다면 소멸자를 Virtual로 호출해주어야 합니다.
 
 	//화면 좌표<->월드 좌표 변환 함수들입니다.
