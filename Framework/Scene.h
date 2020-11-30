@@ -59,6 +59,7 @@ public:
 public:
 	SubCamera* subCamera;
 	void SubRender();
+	D2DApp* GetD2DApp();
 
 };
 

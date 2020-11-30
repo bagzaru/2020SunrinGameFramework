@@ -172,8 +172,7 @@ void Scene::SubRender()
 		printf("no subcamera\n");
 		return;
 	}
-
-
+	
 	subCamera->BeginSubRender();
 
 	for (auto& i : renderableList)
@@ -187,10 +186,15 @@ void Scene::SubRender()
 			subCamera->subRenderTarget,
 			i->transform,
 			nullptr,
-			i->renderer->ComputeWorldPosition(subCamera->subScreenSize, i->transform, subCamera->transform->position));
+			i->renderer->ComputeWorldPosition(subCamera->subScreenSize, i->transform, subCamera->lookAtPosition));
 	}
 
 	subCamera->EndSubRender();
+}
+
+D2DApp* Scene::GetD2DApp()
+{
+	return d2dApp;
 }
 
 GameObject* Scene::Push(GameObject* gameObject)

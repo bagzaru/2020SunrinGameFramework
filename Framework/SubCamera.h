@@ -12,6 +12,8 @@ public:
 
 	Vector2 lookAtPosition;
 
+	Transform* target;
+
 	SubCamera(Vector2 subScreenSize, D2DApp* d2dApp);
 	~SubCamera();
 

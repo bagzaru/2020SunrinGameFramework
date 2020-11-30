@@ -16,4 +16,11 @@ void GameScene::Initialize()
 	Push(spawner);
 
 	PushUI(new ScoreManager());
+
+
+	subCamera = new SubCamera(Vector2(100.0f, 100.0f), GetD2DApp());
+	subCamera->transform->SetPosition(50.0f, 50.0f);
+	subCamera->target = player->transform;
+	Push(subCamera);
+
 }
