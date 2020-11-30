@@ -1,6 +1,6 @@
 #pragma once
 #include "Camera.h"
-class SubCamera :
+class SubScreen :
 	public GameObject
 {
 public:
@@ -14,8 +14,8 @@ public:
 
 	Transform* target;
 
-	SubCamera(Vector2 subScreenSize, D2DApp* d2dApp);
-	~SubCamera();
+	SubScreen(Vector2 subScreenSize, D2DApp* d2dApp);
+	~SubScreen();
 
 	void BeginSubRender();
 	void EndSubRender();

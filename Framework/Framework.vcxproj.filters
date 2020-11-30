@@ -206,7 +206,7 @@
     <ClCompile Include="EndToMain.cpp">
       <Filter>EndingScene</Filter>
     </ClCompile>
-    <ClCompile Include="SubCamera.cpp" />
+    <ClCompile Include="SubScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -343,7 +343,7 @@
     <ClInclude Include="EndingScene.h">
       <Filter>EndingScene</Filter>
     </ClInclude>
-    <ClInclude Include="SubCamera.h" />
+    <ClInclude Include="SubScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

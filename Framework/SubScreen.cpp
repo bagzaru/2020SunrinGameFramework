@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "SubCamera.h"
+#include "SubScreen.h"
 #include "InputManager.h"
 #include "TimeManager.h"
 
-SubCamera::SubCamera(Vector2 subScreenSize, D2DApp* d2dApp)
+SubScreen::SubScreen(Vector2 subScreenSize, D2DApp* d2dApp)
 	:GameObject(subRenderer = new RenderInfo()), 
 	subRenderTarget(subRenderTarget), d2dApp(d2dApp)
 {
@@ -22,14 +22,14 @@ SubCamera::SubCamera(Vector2 subScreenSize, D2DApp* d2dApp)
 	transform->SetPosition(300.0f, 300.0f);
 }
 
-SubCamera::~SubCamera()
+SubScreen::~SubScreen()
 {
 	SAFE_RELEASE(subRenderTarget);
 	SAFE_RELEASE(subScreenSprite->bitmap);
 	SAFE_DELETE(subScreenSprite);
 }
 
-void SubCamera::Update()
+void SubScreen::Update()
 {
 	//예시적으로 이 화면을 따라다닙니다.
 	lookAtPosition = target->position;
@@ -70,7 +70,7 @@ void SubCamera::Update()
 	}*/
 }
 
-void SubCamera::BeginSubRender()
+void SubScreen::BeginSubRender()
 {
 	//반드시 EndSubRender도 호출해야함
 	subRenderTarget->BeginDraw();
@@ -78,7 +78,7 @@ void SubCamera::BeginSubRender()
 	subRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
 }
 
-void SubCamera::EndSubRender()
+void SubScreen::EndSubRender()
 {
 	subRenderTarget->EndDraw();
 }

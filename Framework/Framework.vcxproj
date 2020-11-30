@@ -163,7 +163,7 @@
     <ClCompile Include="SoundEvent.cpp" />
     <ClCompile Include="StartButton.cpp" />
     <ClCompile Include="StartScene.cpp" />
-    <ClCompile Include="SubCamera.cpp" />
+    <ClCompile Include="SubScreen.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="TimeManager.cpp" />
@@ -209,7 +209,7 @@
     <ClInclude Include="StartButton.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="SubCamera.h" />
+    <ClInclude Include="SubScreen.h" />
     <ClInclude Include="tag.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TextObject.h" />

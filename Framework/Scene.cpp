@@ -6,7 +6,7 @@
 Scene* Scene::currentScene = nullptr;
 Scene* Scene::nextScene = nullptr;
 
-Scene::Scene(): renderingManager(nullptr), collisionManager(nullptr), camera(nullptr), d2dApp(nullptr), subCamera(nullptr)
+Scene::Scene(): renderingManager(nullptr), collisionManager(nullptr), camera(nullptr), d2dApp(nullptr), subScreen(nullptr)
 {
 }
 
@@ -156,10 +156,10 @@ void Scene::Render()
 		i->renderer->Render(Scene::d2dApp, i->transform, i->renderer->ComputeUIPosition(i->transform));
 	}
 
-	if (subCamera)
+	if (subScreen)
 	{
 		SubRender();
-		subCamera->renderer->Render(Scene::d2dApp, subCamera->transform, subCamera->renderer->ComputeUIPosition(subCamera->transform));
+		subScreen->renderer->Render(Scene::d2dApp, subScreen->transform, subScreen->renderer->ComputeUIPosition(subScreen->transform));
 	}
 
 	renderingManager->EndRender();
@@ -167,29 +167,24 @@ void Scene::Render()
 
 void Scene::SubRender()
 {
-	if (!subCamera)
+	if (!subScreen)
 	{
-		printf("no subcamera\n");
+		printf("no subscreen\n");
 		return;
 	}
 	
-	subCamera->BeginSubRender();
+	subScreen->BeginSubRender();
 
 	for (auto& i : renderableList)
 	{
-		/*i->renderer->Render(
-			Scene::d2dApp,
-			i->transform,
-			i->renderer->ComputeWorldPosition(subCamera->subScreenSize, i->transform, subCamera->transform->position),
-			subCamera->subRenderTarget);*/
 		i->renderer->BasicRender(
-			subCamera->subRenderTarget,
+			subScreen->subRenderTarget,
 			i->transform,
 			nullptr,
-			i->renderer->ComputeWorldPosition(subCamera->subScreenSize, i->transform, subCamera->lookAtPosition));
+			i->renderer->ComputeWorldPosition(subScreen->subScreenSize, i->transform, subScreen->lookAtPosition));
 	}
 
-	subCamera->EndSubRender();
+	subScreen->EndSubRender();
 }
 
 D2DApp* Scene::GetD2DApp()
