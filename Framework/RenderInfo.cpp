@@ -67,7 +67,7 @@ void RenderInfo::Render(D2DApp* d2dApp, Transform* transform, Vector2 screenPosi
 		printf("RenderInfo::Render: d2dApp이 없습니다.\n");
 		return;
 	}
-
+	
 	ID2D1HwndRenderTarget* renderTarget = d2dApp->GetRenderTarget();
 	if (!renderTarget)
 	{

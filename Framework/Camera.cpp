@@ -16,6 +16,18 @@ Camera::Camera()
 	//printf("w: %f, h: %f\n", halfWidth, halfHeight);
 }
 
+Camera::Camera(float width, float height, RenderInfo* renderer)
+	:GameObject(renderer)
+{
+	screenWidth = width;
+	screenHeight = height;
+	halfWidth = screenWidth * 0.5f;
+	halfHeight = screenHeight * 0.5f;
+
+	screenBox = new AABBCollider(this, -halfWidth, -halfHeight, halfWidth, halfHeight);
+
+}
+
 Camera::~Camera()
 {
 	SAFE_DELETE(screenBox);
@@ -61,7 +73,12 @@ Vector2 Camera::ScreenPositionToWorld(const Vector2& screenPos)
 
 bool Camera::IsOnScreen(AABBCollider* col)
 {
-	return CollisionManager::Intersected(col, screenBox);
+	return CollisionManager::Intersected(col, Scene::GetCurrentScene()->GetCamera()->screenBox);
+}
+
+bool Camera::IsOnScreen(CircleCollider* col)
+{
+	return CollisionManager::Intersected(Scene::GetCurrentScene()->GetCamera()->screenBox,col);
 }
 
 Camera* Camera::GetCamera()

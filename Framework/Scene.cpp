@@ -6,7 +6,7 @@
 Scene* Scene::currentScene = nullptr;
 Scene* Scene::nextScene = nullptr;
 
-Scene::Scene(): renderingManager(nullptr), collisionManager(nullptr), camera(nullptr), d2dApp(nullptr)
+Scene::Scene(): renderingManager(nullptr), collisionManager(nullptr), camera(nullptr), d2dApp(nullptr), subCamera(nullptr)
 {
 }
 
@@ -36,6 +36,7 @@ void Scene::SwapScene(D2DApp* d2dApp)
 	currentScene->collisionManager = new CollisionManager();
 	currentScene->camera = new Camera();
 	currentScene->Push(currentScene->camera);
+
 	currentScene->Initialize();
 }
 
@@ -154,9 +155,42 @@ void Scene::Render()
 	{
 		i->renderer->Render(Scene::d2dApp, i->transform, i->renderer->ComputeUIPosition(i->transform));
 	}
-		//renderingManager->Render(i->renderer, i->transform,camera->transform->position);
-		//renderingManager->Render(i->renderer, i->transform);
+
+	if (subCamera)
+	{
+		SubRender();
+		subCamera->renderer->Render(Scene::d2dApp, subCamera->transform, subCamera->renderer->ComputeUIPosition(subCamera->transform));
+	}
+
 	renderingManager->EndRender();
+}
+
+void Scene::SubRender()
+{
+	if (!subCamera)
+	{
+		printf("no subcamera\n");
+		return;
+	}
+
+
+	subCamera->BeginSubRender();
+
+	for (auto& i : renderableList)
+	{
+		/*i->renderer->Render(
+			Scene::d2dApp,
+			i->transform,
+			i->renderer->ComputeWorldPosition(subCamera->subScreenSize, i->transform, subCamera->transform->position),
+			subCamera->subRenderTarget);*/
+		i->renderer->BasicRender(
+			subCamera->subRenderTarget,
+			i->transform,
+			nullptr,
+			i->renderer->ComputeWorldPosition(subCamera->subScreenSize, i->transform, subCamera->transform->position));
+	}
+
+	subCamera->EndSubRender();
 }
 
 GameObject* Scene::Push(GameObject* gameObject)

@@ -19,7 +19,7 @@ public:
 	RenderInfo();
 	RenderInfo(Sprite* startSprite, float alpha = 1.0f);
 	virtual ~RenderInfo() {}
-protected:
+public:
 	//현재 출력할 Sprite를 저장합니다.
 	Sprite* currentSprite;
 

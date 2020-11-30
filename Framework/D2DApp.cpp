@@ -4,6 +4,7 @@
 
 D2DApp::D2DApp(WinApp* winApp) : winApp(winApp), factory(nullptr), wicFactory(nullptr), renderTarget(nullptr), example(nullptr)
 {
+	testing = true;
 }
 
 bool D2DApp::Initialize()
@@ -55,6 +56,8 @@ HRESULT D2DApp::CreateDeviceResources()
 	{
 		RECT rc;
 		GetClientRect(winApp->GetHWND(), &rc);
+
+		//std::cout << rc.left << " " << rc.top << " " << rc.right << " " << rc.bottom<<"\n";
 		D2D1_SIZE_U size;
 		if (!winApp->GetFullScreened())
 			size = D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top);
@@ -63,6 +66,7 @@ HRESULT D2DApp::CreateDeviceResources()
 		hr = factory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(), D2D1::HwndRenderTargetProperties(winApp->GetHWND(), size), &renderTarget);
 
 	}
+
 	return hr;
 }
 
@@ -170,6 +174,15 @@ IDWriteFactory* D2DApp::GetDwriteFactory()
 {
 	return dwriteFactory;
 }
+
+ID2D1BitmapRenderTarget* D2DApp::CreateSubRenderTarget(float width, float height)
+{
+	ID2D1BitmapRenderTarget* rt;
+	renderTarget->CreateCompatibleRenderTarget(D2D1::SizeF(width, height), &rt);
+
+	return rt;
+}
+
 
 
 void D2DApp::Render()

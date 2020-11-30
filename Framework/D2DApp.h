@@ -46,11 +46,18 @@ private:
 	IWICImagingFactory* wicFactory;
 	ID2D1HwndRenderTarget* renderTarget;
 	IDWriteFactory* dwriteFactory;
+
+	
+	
 	
 public:
 	ID2D1HwndRenderTarget* GetRenderTarget();
 	IWICImagingFactory* GetImagingFactory();
 	ID2D1Factory* GetFactory();
 	IDWriteFactory* GetDwriteFactory();
+
+public:
+	bool testing;
+	ID2D1BitmapRenderTarget* CreateSubRenderTarget(float width, float height);
 };
 

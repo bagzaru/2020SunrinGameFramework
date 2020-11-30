@@ -2,6 +2,7 @@
 //GameObject와 AABBCollider에 의존성을 가집니다.
 #include "GameObject.h"
 #include "AABBCollider.h"
+#include "CircleCollider.h"
 
 //Camera 클래스입니다.
 //게임오브젝트로 구현되어있으며, 매 Scene에서 한번씩 생성됩니다.
@@ -23,6 +24,7 @@ private:
 	AABBCollider* screenBox;
 public:
 	Camera();
+	Camera(float width, float height, RenderInfo* renderer);
 	virtual ~Camera();	//상속될 가능성이 있다면 소멸자를 Virtual로 호출해주어야 합니다.
 
 	//화면 좌표<->월드 좌표 변환 함수들입니다.
@@ -32,7 +34,8 @@ public:
 	static Vector2 ScreenPositionToWorld(const Vector2& screenPosition);
 
 	//콜라이더를 입력받아 Screen 위에 있는지 확인합니다.
-	bool IsOnScreen(AABBCollider* col);
+	static bool IsOnScreen(AABBCollider* col);
+	static bool IsOnScreen(CircleCollider* col);
 
 public:
 	//현재 Scene의 카메라를 받아옵니다.
