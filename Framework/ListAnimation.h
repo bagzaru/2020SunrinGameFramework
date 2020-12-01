@@ -13,6 +13,8 @@ public:
 	std::list<Sprite*> sprites;
 	std::list<Sprite*>::iterator iter;			//현재 Sprite값
 
+	bool animateOnce;
+
 public:
 	//프레임워크 내부적으로 작동하는 함수입니다.
 	virtual Sprite* UpdateAnim();

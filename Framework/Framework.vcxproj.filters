@@ -16,14 +16,8 @@
     <Filter Include="Framework\Components">
       <UniqueIdentifier>{3d32a544-6aad-4c31-a9fe-265993684270}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameScene">
-      <UniqueIdentifier>{9bffd8c3-666c-4a93-a5b7-cc56feae779e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TestScene">
       <UniqueIdentifier>{33f071e4-4b64-48ef-8b93-20ffe15a533a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameScene\Bullet">
-      <UniqueIdentifier>{0fd91e56-85bd-470e-b6b6-d5f382481843}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Components\Rendering">
       <UniqueIdentifier>{319e16dd-5e0f-448f-a8f4-06bfb82b4efd}</UniqueIdentifier>
@@ -52,12 +46,6 @@
     <Filter Include="Framework\Manager\Collision">
       <UniqueIdentifier>{1603b277-b0ae-4f75-ae6a-93f3467d2de7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameScene\Player">
-      <UniqueIdentifier>{37e028af-bedd-449b-a3ab-1a3db18a58f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameScene\Enemy">
-      <UniqueIdentifier>{4d90abbc-2af3-4e90-b52b-ead1104bb32b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Components\Rendering\Font">
       <UniqueIdentifier>{b3cc462c-9395-4b72-b75d-b3bc7b4dcef4}</UniqueIdentifier>
     </Filter>
@@ -70,14 +58,32 @@
     <Filter Include="Framework\stdafx">
       <UniqueIdentifier>{bcc4263f-6a5e-40ad-93ff-066f8bdc8406}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameScene\UI">
-      <UniqueIdentifier>{c5a9e657-ab30-4355-898b-c9c00323eb03}</UniqueIdentifier>
+    <Filter Include="ShootingGame">
+      <UniqueIdentifier>{4ad0fde4-9170-42b0-adc5-ffe48885a054}</UniqueIdentifier>
     </Filter>
-    <Filter Include="StartScene">
+    <Filter Include="ShootingGame\StartScene">
       <UniqueIdentifier>{27b2be83-2324-42a0-8b47-93deea9eb0e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EndingScene">
+    <Filter Include="ShootingGame\GameScene">
+      <UniqueIdentifier>{9bffd8c3-666c-4a93-a5b7-cc56feae779e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShootingGame\GameScene\Bullet">
+      <UniqueIdentifier>{0fd91e56-85bd-470e-b6b6-d5f382481843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShootingGame\GameScene\Player">
+      <UniqueIdentifier>{37e028af-bedd-449b-a3ab-1a3db18a58f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShootingGame\GameScene\Enemy">
+      <UniqueIdentifier>{4d90abbc-2af3-4e90-b52b-ead1104bb32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShootingGame\GameScene\UI">
+      <UniqueIdentifier>{c5a9e657-ab30-4355-898b-c9c00323eb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShootingGame\EndingScene">
       <UniqueIdentifier>{6ecb2b44-2528-4922-abaa-8e40cced20db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlatformerGame">
+      <UniqueIdentifier>{cb808763-7d7e-4708-a003-5be41a57a09c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +115,7 @@
       <Filter>Framework\Components\Rendering\Animation</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>GameScene</Filter>
+      <Filter>ShootingGame\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="ListAnimation.cpp">
       <Filter>Framework\Components\Rendering\Animation</Filter>
@@ -122,7 +128,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Bullet.cpp">
-      <Filter>GameScene\Bullet</Filter>
+      <Filter>ShootingGame\GameScene\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="RenderInfo.cpp">
       <Filter>Framework\Components\Rendering</Filter>
@@ -149,16 +155,16 @@
       <Filter>Framework\Manager\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>GameScene\Player</Filter>
+      <Filter>ShootingGame\GameScene\Player</Filter>
     </ClCompile>
     <ClCompile Include="Gun.cpp">
-      <Filter>GameScene\Player</Filter>
+      <Filter>ShootingGame\GameScene\Player</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>GameScene\Enemy</Filter>
+      <Filter>ShootingGame\GameScene\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemySpawner.cpp">
-      <Filter>GameScene\Enemy</Filter>
+      <Filter>ShootingGame\GameScene\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Framework\GameClass</Filter>
@@ -185,28 +191,30 @@
       <Filter>Framework\Components\Collider</Filter>
     </ClCompile>
     <ClCompile Include="ScoreManager.cpp">
-      <Filter>GameScene\UI</Filter>
+      <Filter>ShootingGame\GameScene\UI</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClCompile>
     <ClCompile Include="StartScene.cpp">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClCompile>
     <ClCompile Include="StartButton.cpp">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClCompile>
     <ClCompile Include="ExitButton.cpp">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClCompile>
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="EndingScene.cpp">
-      <Filter>EndingScene</Filter>
+      <Filter>ShootingGame\EndingScene</Filter>
     </ClCompile>
     <ClCompile Include="EndToMain.cpp">
-      <Filter>EndingScene</Filter>
+      <Filter>ShootingGame\EndingScene</Filter>
     </ClCompile>
     <ClCompile Include="SubScreen.cpp" />
+    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="JumpingObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -237,7 +245,7 @@
       <Filter>Framework\Components\Rendering\Animation</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>GameScene</Filter>
+      <Filter>ShootingGame\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="ListAnimation.h">
       <Filter>Framework\Components\Rendering\Animation</Filter>
@@ -249,7 +257,7 @@
       <Filter>TestScene</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>GameScene\Bullet</Filter>
+      <Filter>ShootingGame\GameScene\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="RenderInfo.h">
       <Filter>Framework\Components\Rendering</Filter>
@@ -279,17 +287,17 @@
       <Filter>Framework\Manager\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>GameScene\Player</Filter>
+      <Filter>ShootingGame\GameScene\Player</Filter>
     </ClInclude>
     <ClInclude Include="Gun.h">
-      <Filter>GameScene\Player</Filter>
+      <Filter>ShootingGame\GameScene\Player</Filter>
     </ClInclude>
     <ClInclude Include="tag.h" />
     <ClInclude Include="EnemySpawner.h">
-      <Filter>GameScene\Enemy</Filter>
+      <Filter>ShootingGame\GameScene\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>GameScene\Enemy</Filter>
+      <Filter>ShootingGame\GameScene\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Framework\GameClass</Filter>
@@ -322,28 +330,30 @@
       <Filter>Framework\stdafx</Filter>
     </ClInclude>
     <ClInclude Include="ScoreManager.h">
-      <Filter>GameScene\UI</Filter>
+      <Filter>ShootingGame\GameScene\UI</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClInclude>
     <ClInclude Include="StartScene.h">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClInclude>
     <ClInclude Include="StartButton.h">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClInclude>
     <ClInclude Include="ExitButton.h">
-      <Filter>StartScene</Filter>
+      <Filter>ShootingGame\StartScene</Filter>
     </ClInclude>
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="EndToMain.h">
-      <Filter>EndingScene</Filter>
+      <Filter>ShootingGame\EndingScene</Filter>
     </ClInclude>
     <ClInclude Include="EndingScene.h">
-      <Filter>EndingScene</Filter>
+      <Filter>ShootingGame\EndingScene</Filter>
     </ClInclude>
     <ClInclude Include="SubScreen.h" />
+    <ClInclude Include="Ground.h" />
+    <ClInclude Include="JumpingObject.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

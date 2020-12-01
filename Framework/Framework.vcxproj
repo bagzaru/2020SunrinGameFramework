@@ -149,8 +149,10 @@
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="JumpingObject.cpp" />
     <ClCompile Include="ListAnimation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -195,8 +197,10 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="JumpingObject.h" />
     <ClInclude Include="ListAnimation.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />

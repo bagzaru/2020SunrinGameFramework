@@ -23,6 +23,7 @@ AnimationObject::AnimationObject(AnimationInfo* animInfo)
 	testAnim1 = new ListAnimation(0,2.0f);				//state값은 0, 초당 2.0프레임 수행할 애니메이션입니다.
 	testAnim1->PushBackSprite(L"resources/circle.png");	//출력할 이미지를 pushback 해줍니다.
 	testAnim1->PushBackSprite(L"resources/square.png");
+	testAnim1->animateOnce = true;
 	animationRenderer->PushBackAnimation(testAnim1);	//AnimationInfo에 애니메이션을 푸쉬백합니다.
 
 	//Sheet Animation입니다.

@@ -102,22 +102,36 @@ bool CollisionManager::Intersected(AABBCollider* a, AABBCollider* b)
 	float aRight, bRight;
 	float aTop, bTop;
 	float aBottom, bBottom;
-	aLeft = a->boundingBox.leftTop.x * a->transform->scale.x
+
+	Vector2 ascale, bscale;
+	ascale = a->transform->scale;
+	bscale = b->transform->scale;
+
+	if (a->transform->scale.x < 0.0f)
+		ascale.x *= -1.0f;
+	if (a->transform->scale.y < 0.0f)
+		ascale.y *= -1.0f;
+	if (b->transform->scale.x < 0.0f)
+		bscale.x *= -1.0f;
+	if (b->transform->scale.y < 0.0f)
+		bscale.y *= -1.0f;
+
+	aLeft = a->boundingBox.leftTop.x * ascale.x
 		+ a->transform->position.x;
-	aRight = a->boundingBox.rightBottom.x * a->transform->scale.x
+	aRight = a->boundingBox.rightBottom.x * ascale.x
 		+ a->transform->position.x;
-	aTop = a->boundingBox.leftTop.y * a->transform->scale.y
+	aTop = a->boundingBox.leftTop.y * ascale.y
 		+ a->transform->position.y;
-	aBottom = a->boundingBox.rightBottom.y * a->transform->scale.y
+	aBottom = a->boundingBox.rightBottom.y * ascale.y
 		+ a->transform->position.y;
 
-	bLeft = b->boundingBox.leftTop.x * b->transform->scale.x
+	bLeft = b->boundingBox.leftTop.x * bscale.x
 		+ b->transform->position.x;
-	bRight = b->boundingBox.rightBottom.x * b->transform->scale.x
+	bRight = b->boundingBox.rightBottom.x * bscale.x
 		+ b->transform->position.x;
-	bTop = b->boundingBox.leftTop.y * b->transform->scale.y
+	bTop = b->boundingBox.leftTop.y * bscale.y
 		+ b->transform->position.y;
-	bBottom = b->boundingBox.rightBottom.y * b->transform->scale.y
+	bBottom = b->boundingBox.rightBottom.y * bscale.y
 		+ b->transform->position.y;
 
 	/*std::cout << a->boundingBox.leftTop.x << " " << a->boundingBox.rightBottom.x

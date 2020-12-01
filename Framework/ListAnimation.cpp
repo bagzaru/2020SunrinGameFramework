@@ -5,7 +5,7 @@
 
 
 ListAnimation::ListAnimation(const int state, float fps)
-	:Animation(state, fps), iter(sprites.begin())
+	:Animation(state, fps), iter(sprites.begin()), animateOnce(false)
 {
 }
 
@@ -27,8 +27,16 @@ Sprite* ListAnimation::UpdateAnim()
 		++iter;
 		if (currentFrame >= length)
 		{
-			currentFrame = 0;
-			iter = sprites.begin();
+			if (animateOnce)
+			{
+				--iter;
+				--currentFrame;
+			}
+			else
+			{
+				currentFrame = 0;
+				iter = sprites.begin();
+			}
 		}
 	}
 	return *iter;
