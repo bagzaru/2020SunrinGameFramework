@@ -213,8 +213,15 @@
       <Filter>ShootingGame\EndingScene</Filter>
     </ClCompile>
     <ClCompile Include="SubScreen.cpp" />
-    <ClCompile Include="Ground.cpp" />
-    <ClCompile Include="JumpingObject.cpp" />
+    <ClCompile Include="Ground.cpp">
+      <Filter>PlatformerGame</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpingObject.cpp">
+      <Filter>PlatformerGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformerScene.cpp">
+      <Filter>PlatformerGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApp.h">
@@ -352,8 +359,15 @@
       <Filter>ShootingGame\EndingScene</Filter>
     </ClInclude>
     <ClInclude Include="SubScreen.h" />
-    <ClInclude Include="Ground.h" />
-    <ClInclude Include="JumpingObject.h" />
+    <ClInclude Include="Ground.h">
+      <Filter>PlatformerGame</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpingObject.h">
+      <Filter>PlatformerGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformerScene.h">
+      <Filter>PlatformerGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector2.inl">

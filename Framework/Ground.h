@@ -15,6 +15,6 @@ public:
 	float gap;		
 
 	//대상이 땅 위에 있는지 체크함.
-	bool CheckStand(AABBCollider* g, float speed);
+	bool CheckStand(AABBCollider* g, float deltaSpeed);
 };
 
